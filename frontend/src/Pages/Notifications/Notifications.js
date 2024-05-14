@@ -1,0 +1,12 @@
+import React from "react";
+import '../page.css';
+
+const Notifications = () => {
+    return (
+        <div>
+            <h1 className="pageHeading">Your Notifications</h1>
+        </div>
+    );
+};
+
+export default Notifications;

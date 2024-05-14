@@ -41,7 +41,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            alert('Please enter both email and password.');
+            alert('Please enter email and password.');
             return;
         }
         console.log(email, password);
@@ -56,6 +56,7 @@ const Login = () => {
             }
             else{
                 alert('Invalid email or password');
+                console.log(emailPasswordError.message);
             }
         } catch (emailPasswordError) {
             console.log(emailPasswordError);

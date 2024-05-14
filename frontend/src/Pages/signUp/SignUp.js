@@ -42,23 +42,26 @@ const SignUp = () => {
             alert('Please fill in all fields.');
             return;
         }
+        else if(password.length < 6){
+            alert('Password must be at least 6 characters long');
+            return;
+        }
         try {
             await createUserWithEmailAndPassword(email, password);
-            const user = auth.currentUser;
             if (user){
                 console.log('User created');
                 console.log(user.displayName);
                 console.log(user.email);
                 console.log(user.phoneNumber);
-                document.getElementById('username').value = '';
-                document.getElementById('FullName').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('password').value = '';
                 navigate('/');
                 setEmail('');
                 setPassword('');
                 setFullName('');
                 setUsername('');
+            }
+            else{
+                alert('Error creating user');
+                console.log(error);
             }
         } catch (error) {
             console.error('Error signing up:', error);

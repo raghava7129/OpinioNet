@@ -1,0 +1,8 @@
+.pageHeading{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
