@@ -10,6 +10,14 @@
     
 }
 
+.sidebarOptions__active{
+    color:#608bb8;
+    transition:10ms ease-out;
+    font-size: 18px;
+    width: auto;
+    height: auto;
+}
+
 .SideBarIcons{
     color : '#f5c13e'
 }

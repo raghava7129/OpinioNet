@@ -3,7 +3,7 @@ import '../page.css';
 
 const Explore = () => {
     return (
-        <div>
+        <div className='page'>
             <h1 className="pageHeading">Explore</h1>
         </div>
     );

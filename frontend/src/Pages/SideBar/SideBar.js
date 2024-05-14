@@ -1,5 +1,4 @@
 import {React, useState} from 'react';
-import { Link } from 'react-router-dom';
 import './SideBar.css';
 import SideBarOptions from './SideBarOptions';
 import HomeIcon from '@mui/icons-material/Home';
@@ -13,6 +12,8 @@ import NotificationIcon from '@mui/icons-material/Notifications';
 import MailOutLineIcon from '@mui/icons-material/MailOutline';
 import MoreIcon from '@mui/icons-material/More';
 import ExploreIcon from '@mui/icons-material/Explore';
+import CustomLink from '../CustomLink';
+import { useLocation } from 'react-router-dom';
 
 
 const handleHover = () => {
@@ -32,36 +33,38 @@ const SideBar = ({handleLogout, user}) => {
         setAnchorEl(null);
     }
 
+    const location = useLocation();
+
     return (
         <div className='sidebar'>
 
-            <Link to="/home" style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={HomeIcon} text="Home" />
-            </Link>
+            <CustomLink to="/home">
+                <SideBarOptions active={location.pathname === '/home'} Icon={HomeIcon} text="Home" />
+            </CustomLink>
 
-            <Link to='/home/Explore' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={ExploreIcon} text='Explore' />
-            </Link>
+            <CustomLink to='/home/Explore'>
+                <SideBarOptions active={location.pathname === '/home/Explore'} Icon={ExploreIcon} text='Explore' />
+            </CustomLink>
 
-            <Link to='/home/Messages' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={MailOutLineIcon} text='Messages' />
-            </Link>
+            <CustomLink to='/home/Messages' >
+                <SideBarOptions active={location.pathname === '/home/Messages'} Icon={MailOutLineIcon} text='Messages' />
+            </CustomLink>
 
-            <Link to='/home/Notifications' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={NotificationIcon} text='Notification' />
-            </Link>
+            <CustomLink to='/home/Notifications'>
+                <SideBarOptions active={location.pathname === '/home/Notifications'} Icon={NotificationIcon} text='Notification' />
+            </CustomLink>
             
-            <Link to='/home/Profile' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={ProfileIcon} text='Profile' />
-            </Link>
+            <CustomLink to='/home/Profile'>
+                <SideBarOptions active={location.pathname === '/home/Profile'} Icon={ProfileIcon} text='Profile' />
+            </CustomLink>
 
-            <Link to='/home/Settings' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={SettingsIcon} text='Settings' />
-            </Link>
+            <CustomLink to='/home/Settings'>
+                <SideBarOptions active={location.pathname === '/home/Settings'} Icon={SettingsIcon} text='Settings' />
+            </CustomLink>
 
-            <Link to='/home/More' style={{ textDecoration: 'none' }}>
-                <SideBarOptions active Icon={MoreIcon} text='More' />
-            </Link>
+            <CustomLink to='/home/More'>
+                <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text='More' />
+            </CustomLink>
             
             <div className='profileContainer'>
                 <div className='ProfileInfo'>

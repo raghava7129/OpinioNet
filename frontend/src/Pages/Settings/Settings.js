@@ -3,7 +3,7 @@ import '../page.css';
 
 const Settings = () => {
     return (
-        <div>
+        <div className='page'>
             <h1 className='pageHeading'>Settings Page</h1>
         </div>
     )

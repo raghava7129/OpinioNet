@@ -10,6 +10,7 @@ import Notifications from './Pages/Notifications/Notifications';
 import Profile from './Pages/Profile/Profile';
 import Settings from './Pages/Settings/Settings';
 import More from './Pages/More/More';
+import Feed from './Pages/Feed/Feed';
 
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
+          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}>
+            <Route index element={<Feed />} />
+          </Route>
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}>
               <Route path="Explore" element={<Explore />} />
               <Route path="Messages" element={<Messages />} />

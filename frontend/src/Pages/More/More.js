@@ -3,7 +3,7 @@ import '../page.css';
 
 const More = () => {
     return (
-        <div>
+        <div className='page'>
             <h1 className="pageHeading">More</h1>
         </div>
     );
