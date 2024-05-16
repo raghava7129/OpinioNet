@@ -11,7 +11,10 @@
 }
 
 .sidebarOptions__active{
-    color:#608bb8;
+    /* color:#0eccc9; */
+    /* color:#0eccc9; */
+    /* color:#c669d6; */
+    color:#708cb6;
     transition:10ms ease-out;
     font-size: 18px;
     width: auto;
