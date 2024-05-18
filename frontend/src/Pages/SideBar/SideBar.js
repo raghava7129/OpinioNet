@@ -14,8 +14,8 @@ import MoreIcon from '@mui/icons-material/More';
 import ExploreIcon from '@mui/icons-material/Explore';
 import CustomLink from '../CustomLink';
 import { useLocation } from 'react-router-dom';
-
-import VoiceBox from '../Feed/VoiceBox';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const handleHover = () => {
@@ -68,7 +68,13 @@ const SideBar = ({handleLogout, user}) => {
                 <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text='More' />
             </CustomLink>
 
-            <VoiceBox/>
+            {/* <Button  className='VoiceBoxBtn' onClick={handleVoiceBox}>
+                Speak your mind
+            </Button> */}
+
+            <Link to='/' className='VoiceBoxBtn'>
+                Speak your mind
+            </Link>
             
             <div className='profileContainer'>
                 <div className='ProfileInfo'>

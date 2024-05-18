@@ -67,3 +67,19 @@
     padding: 10px;
 }
 
+.sidebar .VoiceBoxBtn{
+    color: #ffffff;
+    background-color: #FFC107;
+    font-size: 20px;
+    border-radius: 15px;
+    font-family: cursive;
+    font-style: italic;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.sidebar .VoiceBoxBtn:hover{
+    background-color: #FFD700;
+}

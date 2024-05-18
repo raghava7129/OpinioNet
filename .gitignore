@@ -8,6 +8,7 @@
 frontend/node_modules
 Backend/node_modules
 Backend/.env
+frontend/.env
 
 frontend/src/firebase.init.js
 

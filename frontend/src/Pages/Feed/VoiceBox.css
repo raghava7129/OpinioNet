@@ -1,0 +1,88 @@
+.VoiceBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    background-color: hsl(155, 61%, 79%);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.VoiceBox form {
+    width: 100%;
+}
+
+.VoiceBox_input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.VoiceBox_input .MuiAvatar-root {
+    margin-right: 10px;
+}
+
+.VoiceBox_input input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.imageIcon_VoiceButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imageIcon_VoiceButton .imageIcon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #037977;
+    transition: color 0.3s ease;
+}
+
+.imageIcon_VoiceButton .imageIcon:hover {
+    color: #006361;
+}
+
+.imageIcon_VoiceButton .imageInput {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    margin: 2px;
+    margin-right: 5px;
+    display: none;
+}
+
+
+
+.imageIcon_VoiceButton .VoiceBox__VoiceButton {
+    background-color: #FFC107;
+    color: #FFFFFF;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-transform: none;
+    font-family: cursive;
+    font-style: italic;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imageIcon_VoiceButton .VoiceBox__VoiceButton:hover {
+    background-color: #FFA000;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
