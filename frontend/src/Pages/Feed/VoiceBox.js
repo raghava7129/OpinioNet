@@ -14,14 +14,13 @@ function VoiceBox(){
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [loggedInUser] = useLoggedInUser();
-    const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
     const user = useAuthState(auth);
 
     const userEmail = user[0]?.email;
     // console.log("userEMail from VoiceBox  : "+userEmail);
 
-    const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
+    const [FullName, setFullName] = useState('');
+    const [UserName, setUserName] = useState('');
 
     const handleImgUpload = (e) => {
         setIsLoaded(true);
@@ -45,21 +44,66 @@ function VoiceBox(){
 
     const handleVoice = (e) => {
         e.preventDefault();
-        if(Voice === "" && imageURL === ""){
-            return;
-        }
-        else{
+
+        console.log("VoiceBox providerID : "+user[0]?.providerData[0].providerId);
+
+        if(user[0]?.providerData[0].providerId == 'password'){
+            const usersName = loggedInUser?.username ? loggedInUser?.username : "User";
+            setUserName(usersName);
+            const Name = loggedInUser?.fullName ? loggedInUser?.fullName : "User fullname";
+            setFullName(Name);
+            const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic
+            : "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+
+
             const userPost = {
                 profilePic: userProfilePic,
                 Voice: Voice,
                 imageURL: imageURL,
-                username: username,
-                name: name,
+                username: usersName,
+                name: Name,
                 email: userEmail
             }
-    
-            console.log(userPost);
-    
+
+            console.log("from normal signUp : "+userPost);
+
+            fetch("http://localhost:5000/post", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userPost),
+            }).then((response) => {
+                console.log("Response:", response);
+                setVoice("");
+                setImageURL("");
+                
+            }).catch((error) => {
+                console.error("Error:", error);
+            });
+        
+
+        }
+
+        else{
+            const NAME = user[0]?.displayName || "User";
+            const USERNAME = user[0]?.email.split('@')[0];
+            setFullName(NAME);
+            setUserName(USERNAME);
+            const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic
+            : "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+
+            const userPost = {
+                profilePic: userProfilePic,
+                Voice: Voice,
+                imageURL: imageURL,
+                username: USERNAME,
+                name: NAME,
+                email: userEmail
+            }
+
+            console.log("from Google signUp : "+userPost);
+
             fetch("http://localhost:5000/post", {
                 method: "POST",
                 headers: {
@@ -75,6 +119,9 @@ function VoiceBox(){
                 console.error("Error:", error);
             });
         }
+
+        
+    
     
 
     }
