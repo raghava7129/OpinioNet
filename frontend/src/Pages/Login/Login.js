@@ -8,6 +8,7 @@ import GoogleButton from 'react-google-button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import LoadingPage from '../LoadingPage';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -45,23 +46,25 @@ const Login = () => {
             return;
         }
         console.log(email, password);
-        try {
             await signInWithEmailAndPassword(email, password);
-            if (emailPasswordUser) {
+
+            const data = await axios.get(`http://localhost:5000/register?email=${email}`);
+            // const data = await axios.get('http://localhost:5000/register');
+
+
+            if(data.data.length === 0){
+                alert('No user found. Please sign up');
+                navigate('/signup');
+            }
+            else{
+                console.log(data.data);
+                
                 navigate('/');
-                console.log('User logged in');
 
                 setEmail('');
                 setPassword('');
+
             }
-            else{
-                alert('Invalid email or password');
-                console.log(emailPasswordError.message);
-            }
-        } catch (emailPasswordError) {
-            console.log(emailPasswordError);
-            alert('Error: ' + emailPasswordError.message);
-        }
     }
 
     

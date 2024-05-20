@@ -46,7 +46,53 @@ async function run() {
             res.status(500).send("Error inserting post");
         }
     });
+
+    app.post('/register', async (req, res) => {
+        try {
+            const user = req.body;
+            const result = await userCollection.insertOne(user);
+            res.status(201);
+        } catch (error) {
+            console.error("Error inserting user:", error);
+            res.status(500).send("Error inserting user");
+        }
+    });
     
+    app.get('/register', async (req, res)=>{
+      try{
+        const email = req.query.email;
+        const user = await userCollection.find({email: email}).toArray();
+        res.send(user);
+        
+      } catch(error){
+        console.error("Error getting user:", error);
+        res.status(500).send("Error getting user");
+      }
+    });
+
+    app.get('/registeredUsers', async (req, res)=>{
+      try{
+        const user = await userCollection.find().toArray();
+        res.send(user);
+        
+      } catch(error){
+        console.error("Error getting Registered users : ", error);
+        res.status(500).send("Error getting Registered users");
+      }
+    });
+
+
+   app.get('/loggedInUser', async (req, res)=>{
+      try{
+        const email = req.query.email;
+        const user = await userCollection.find({email : email}).toArray();
+        res.send(user);
+        
+      } catch(error){
+        console.error("Error getting users:", error);
+        res.status(500).send("Error getting users");
+      }
+    });
 
   } catch(error) {
     console.log(error);

@@ -3,12 +3,25 @@ import {Avatar, Button} from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./VoiceBox.css";
 import axios from "axios";
+import useLoggedInUser from "../../hooks/useLoggedInUser";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 function VoiceBox(){
 
     const [Voice, setVoice] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
+
+    const [loggedInUser] = useLoggedInUser();
+    const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+    const user = useAuthState(auth);
+
+    const userEmail = user[0]?.email;
+    // console.log("userEMail from VoiceBox  : "+userEmail);
+
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
 
     const handleImgUpload = (e) => {
         setIsLoaded(true);
@@ -37,8 +50,12 @@ function VoiceBox(){
         }
         else{
             const userPost = {
+                profilePic: userProfilePic,
                 Voice: Voice,
                 imageURL: imageURL,
+                username: username,
+                name: name,
+                email: userEmail
             }
     
             console.log(userPost);

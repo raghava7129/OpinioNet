@@ -5,6 +5,7 @@ import Image from '../../assets/images/Login_page_img.png';
 import auth from '../../firebase.init';
 import './SignUp.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // import { GoogleAuthProvider } from 'firebase/auth';
 
 
@@ -46,27 +47,22 @@ const SignUp = () => {
             alert('Password must be at least 6 characters long');
             return;
         }
-        try {
-            await createUserWithEmailAndPassword(email, password);
-            if (user){
-                console.log('User created');
-                console.log(user.displayName);
-                console.log(user.email);
-                console.log(user.phoneNumber);
-                navigate('/');
-                setEmail('');
-                setPassword('');
-                setFullName('');
-                setUsername('');
-            }
-            else{
-                alert('Error creating user');
-                console.log(error);
-            }
-        } catch (error) {
-            console.error('Error signing up:', error);
-            alert('Error: ' + error.message);
-        }
+        createUserWithEmailAndPassword(email, password);
+        
+        const User = {
+            username: username,
+            fullName: fullName,
+            email: email,
+        };
+
+        axios.post("http://localhost:5000/register", User).then((response) => {
+            console.log(response);
+            auth.SignUpWithEmailAndPassword(email, password);
+            navigate('/');
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+
     }
     
 

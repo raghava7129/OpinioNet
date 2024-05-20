@@ -16,6 +16,10 @@ import CustomLink from '../CustomLink';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
+import { EmailAuthCredential } from 'firebase/auth';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 const handleHover = () => {
@@ -37,6 +41,21 @@ const SideBar = ({handleLogout, user}) => {
 
     const location = useLocation();
 
+    const [loggedInUser] = useLoggedInUser();
+    
+    const emailPrefix = user[0]?.email.split('@')[0];
+    const usersName = loggedInUser?.username ? loggedInUser?.username : "User";
+    // console.log("username : "+usersName);
+    // console.log("emailPrefix : "+emailPrefix);
+    // console.log("user : "+user[0]);
+
+    // const User = useAuthState(auth);
+    // console.log("user email from SideBar : "+User[0]?.email);
+
+
+
+    const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+    
     return (
         <div className='sidebar'>
 
@@ -68,10 +87,6 @@ const SideBar = ({handleLogout, user}) => {
                 <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text='More' />
             </CustomLink>
 
-            {/* <Button  className='VoiceBoxBtn' onClick={handleVoiceBox}>
-                Speak your mind
-            </Button> */}
-
             <Link to='/' className='VoiceBoxBtn'>
                 Speak your mind
             </Link>
@@ -81,11 +96,11 @@ const SideBar = ({handleLogout, user}) => {
                     <Avatar style={{
                         width: '60px',
                         height: '60px'                
-                    }} src='https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg'/>
+                    }} src={userProfilePic}/>
                     <div className='userInfo'>
                         <div className='userInfoDiv1'>
-                            <h2>Raghava</h2>
-                            <h4>@RJustinSain</h4>
+                            <h2>{emailPrefix}</h2>
+                            <h4>@{usersName}</h4>
                         </div>
 
                         <IconButton
@@ -116,10 +131,10 @@ const SideBar = ({handleLogout, user}) => {
                                 <Avatar style={{
                                     width: '60px',
                                     height: '60px'                
-                                }} src='https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg'/>
+                                }} src={userProfilePic}/>
                                 <div className='subUserInfo'>
-                                    <h2>Raghava</h2>
-                                    <h4>@RJustinSain</h4>
+                                    <h2>{emailPrefix}</h2>
+                                    <h4>@{usersName}</h4>
                                 </div>
                             
                             </div>
@@ -129,7 +144,7 @@ const SideBar = ({handleLogout, user}) => {
 
                         <Divider />
                         <MenuItem onClick={handleClose}>Add an existing account</MenuItem>
-                        <MenuItem onClick = {handleLogout}>Log out @RJustinSain</MenuItem>
+                        <MenuItem onClick = {handleLogout}>Log out @{usersName}</MenuItem>
 
                     </Menu>
 
