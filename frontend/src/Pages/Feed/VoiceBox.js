@@ -1,3 +1,5 @@
+    //   Error : on Second time posting the imgURL is not getting updated and the ImgIcon is not changing
+
 import React, { useState } from "react";
 import {Avatar, Button} from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -23,8 +25,9 @@ function VoiceBox(){
     const [UserName, setUserName] = useState('');
 
     const handleImgUpload = (e) => {
-        setIsLoaded(true);
         e.preventDefault();
+        console.log("inside handleImgUpload");
+        setIsLoaded(true);
         const image = e.target.files[0];
         console.log(image);
 
@@ -32,9 +35,12 @@ function VoiceBox(){
         formData.set('image', image);
 
         axios.post(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_API_KEY}`, formData).then((response) => {
+            console.log("inside axios");
             console.log(response.data.data.display_url);
             setImageURL(response.data.data.display_url);
             setIsLoaded(false);
+            e.target.value = null;
+
         }).catch((error) => {
             console.error("Error:", error);
                setIsLoaded(false);
@@ -67,6 +73,8 @@ function VoiceBox(){
 
             console.log("from normal signUp : "+userPost);
 
+           
+
             fetch("http://localhost:5000/post", {
                 method: "POST",
                 headers: {
@@ -75,8 +83,6 @@ function VoiceBox(){
                 body: JSON.stringify(userPost),
             }).then((response) => {
                 console.log("Response:", response);
-                setVoice("");
-                setImageURL("");
                 
             }).catch((error) => {
                 console.error("Error:", error);
@@ -104,6 +110,8 @@ function VoiceBox(){
 
             console.log("from Google signUp : "+userPost);
 
+            
+
             fetch("http://localhost:5000/post", {
                 method: "POST",
                 headers: {
@@ -112,8 +120,6 @@ function VoiceBox(){
                 body: JSON.stringify(userPost),
             }).then((response) => {
                 console.log("Response:", response);
-                setVoice("");
-                setImageURL("");
                 
             }).catch((error) => {
                 console.error("Error:", error);
@@ -121,7 +127,8 @@ function VoiceBox(){
         }
 
         
-    
+        setVoice("");
+        setImageURL("");
     
 
     }
@@ -137,7 +144,10 @@ function VoiceBox(){
                     <input type="text" 
                         id="Voice" 
                         placeholder="speak your mind"
-                        onChange={(e)=>{setVoice(e.target.value)}}/>
+                        onChange={(e)=>{setVoice(e.target.value)}}
+                        value={Voice}
+                        required
+                        />
 
 
                 </div>
@@ -156,7 +166,8 @@ function VoiceBox(){
                      type="file"
                      id = "image"
                      className="imageInput"
-                     onChange={handleImgUpload}/>
+                     onChange={handleImgUpload}
+                    />
 
                     <Button className = "VoiceBox__VoiceButton"  type = "submit" >
                         Send Your Voice

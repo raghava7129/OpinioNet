@@ -2,11 +2,31 @@
     flex: 0.8;
     border-right: 1px solid #e0e0e0;
     padding: 0 180px;
-    height: fit-content;
+    height: 100vh;
+    overflow-y: auto;
+
     display: flex;
     flex-direction: column;
-    align-self: first baseline;
+    align-items: center; 
+    box-sizing: border-box;
+
 }
+
+
+.Header {
+    position: fixed;
+    top: 0;
+    background-color: white;
+    width: 50%;
+    z-index: 1000;
+    padding: 0 180px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
 .Title{
     font-size: 30px;
