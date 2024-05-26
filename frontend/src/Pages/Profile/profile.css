@@ -1,0 +1,24 @@
+.ProfilePage{
+    flex: 0.8;
+    border-right: 1px solid #e0e0e0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    
+    scrollbar-width: thin;
+    scrollbar-color: rgb(150, 136, 136) rgb(183, 234, 234);
+}
+
+.ProfilePage::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ProfilePage::-webkit-scrollbar-track {
+    background: rgb(124, 148, 148);
+}
+
+.ProfilePage::-webkit-scrollbar-thumb {
+    background-color: rgb(84, 81, 81);
+    border-radius: 10px;
+    border: 2px solid rgb(157, 240, 240);
+}

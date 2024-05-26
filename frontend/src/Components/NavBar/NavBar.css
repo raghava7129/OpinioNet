@@ -1,0 +1,59 @@
+.NavBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    justify-content: center;
+    background-color: #f8f3d6;
+    border-bottom: 1px solid black;
+
+    /* position: fixed; */
+
+}
+
+.BackArrow{
+    color:#ffd900;
+    cursor: pointer;
+    padding: 10px;
+    scale: 1.5;
+    stroke: black;
+    stroke-width: 0.2px;
+}
+
+.BackArrow:hover{
+    color: #e4d998;
+    stroke: rgb(21, 0, 255);
+    stroke-width: 0.8px;
+}
+
+.NavBar h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    color:#ffd900;
+    font-style:normal;
+    -webkit-text-stroke: 0.4px rgb(0, 0, 0);
+    font-size: 30px;
+}
+
+.DropDown{
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    scale: 2;
+    margin: 0px 5px;
+    stroke: black;
+    stroke-width: 0.2px;
+    color: #ffd900;
+}
+
+.DropDown :hover{
+    color: #e4d998;
+}
+
+.NavBar h3{
+    font-family: cursive;
+}

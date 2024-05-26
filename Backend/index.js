@@ -94,9 +94,28 @@ async function run() {
       }
     });
 
+    app.get('/posts', async (req, res) => {
+      try {
+          const email = req.query.email;
+          if (!email) {
+              return res.status(400).send("Email parameter is required");
+          }
+  
+          const posts = await postCollection.find({ email: email }).toArray();
+          res.status(200).send(posts);
+      } catch (error) {
+          console.error("Error getting user's posts:", error);
+          res.status(500).send("Internal server error");
+      }
+  });
+
   } catch(error) {
     console.log(error);
   }
+
+  
+
+
 }
 run().catch(console.dir);
 
