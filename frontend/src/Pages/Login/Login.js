@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import LoadingPage from '../LoadingPage';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const Login = () => {
 
@@ -35,9 +36,6 @@ const Login = () => {
         alert('Error: ' + emailPasswordError.message);
         
     }
-    else if(signInErrorGoogle){
-        alert('Error: ' + signInErrorGoogle.message);
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,23 +46,26 @@ const Login = () => {
         console.log(email, password);
             await signInWithEmailAndPassword(email, password);
 
-            const data = await axios.get(`http://localhost:5000/register?email=${email}`);
+            console.log(email , password);
+            await axios.get(`http://localhost:5000/register?email= ${email}`).then((response)=>{
+                if(response.data.length === 0){
+
+                    // console.log(response);
+                    navigate('/');
+    
+                    setEmail('');
+                    setPassword('');
+                    
+                }
+                else{
+                    // console.log(response);
+                    alert('No user found. Please sign up');
+                    navigate('/signup');
+                    
+    
+                }
+            });
             // const data = await axios.get('http://localhost:5000/register');
-
-
-            if(data.data.length === 0){
-                alert('No user found. Please sign up');
-                navigate('/signup');
-            }
-            else{
-                // console.log(data.data);
-                
-                navigate('/');
-
-                setEmail('');
-                setPassword('');
-
-            }
     }
 
     
@@ -73,16 +74,20 @@ const Login = () => {
         console.log('Google button clicked');
         try{
             await signInWithGoogle();
-            if(userGoogle){
-                navigate('/');
-                console.log('User logged in with Google');
-            }
+            
 
         }catch(signInErrorGoogle){
             console.log(signInErrorGoogle);
             alert('Error: ' + signInErrorGoogle.message);
         }
     }
+
+    useEffect(() => {
+        if (userGoogle) {
+            console.log('User logged in with Google:', userGoogle);
+            navigate('/');
+        }
+    }, [userGoogle, navigate]);
 
     
 

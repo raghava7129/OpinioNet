@@ -2,8 +2,11 @@
     display: flex;
     align-items: flex-start;
     padding: 20px;
-    border-bottom: 2px solid rgb(241, 229, 229);
     width: 100%;
+    border-radius: 15px;
+    background-color: #fcf2e5;
+    margin-bottom: 5%;
+    border: 1px solid #ff9100;
     
 }
 
@@ -38,14 +41,27 @@
 }
 
 .post_badge {
-    font-size: 1rem;
-    color: var(--twitter-color);
+    font-size: 20px !important;
+    color: #1DA1F2;
     margin-left: 5px;
 }
 
 .post_headerDescription {
     margin-top: 10px;
     font-size: 1rem;
+    max-height: 3.6em; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    line-height: 1.2em;
+    cursor: pointer;
+}
+
+.post_headerDescription.expanded {
+    max-height: none;
+    -webkit-line-clamp: unset;
 }
 
 .post_footer {
@@ -57,15 +73,31 @@
 .post_footerIcon {
     cursor: pointer;
     transition: transform 0.2s;
+    margin: 5px 1px;
+    transform: scale(1.5);
 }
 
 .post_footerIcon:hover {
     transform: scale(1.2);
 }
 
-.post img {
+
+.post .post_body .post_header .postImage{
+
+    display: block;
+    margin: 10px auto;
+
     border-radius: 20px;
     margin-top: 10px;
-    max-width: 100%;
-    height: auto;
+    width: max-content;
+    height: max-content;
+
+    background-color: aqua;
 }
+
+.post .profileImg{
+    transform: scale(1.5);
+    margin: 5px;
+}
+
+

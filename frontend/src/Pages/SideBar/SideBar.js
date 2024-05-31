@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import './SideBar.css';
 import SideBarOptions from './SideBarOptions';
 import HomeIcon from '@mui/icons-material/Home';
@@ -26,7 +26,7 @@ const handleHover = () => {
     console.log(`Hovered`);
 }
 
-const SideBar = ({handleLogout, user}) => {
+const SideBar = ({handleLogout, user, profilePic}) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
@@ -53,9 +53,6 @@ const SideBar = ({handleLogout, user}) => {
     // console.log("user email from SideBar : "+User[0]?.email);
 
 
-
-    const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
-    
     return (
         <div className='sidebar'>
 
@@ -91,12 +88,12 @@ const SideBar = ({handleLogout, user}) => {
                 Speak your mind
             </Link>
             
-            <div className='profileContainer'>
+            <div className='profileContainer'> 
                 <div className='ProfileInfo'>
                     <Avatar style={{
                         width: '60px',
                         height: '60px'                
-                    }} src={userProfilePic}/>
+                    }} src={profilePic} className='pic1'/>
                     <div className='userInfo'>
                         <div className='userInfoDiv1'>
                             <h2>{emailPrefix}</h2>
@@ -126,12 +123,12 @@ const SideBar = ({handleLogout, user}) => {
                         onClick={handleClose}
                         onClose={handleClose}
                     >
-                        <MenuItem className='profileInfo1'>
+                        <MenuItem className='profileInfo1'> 
                             <div className='ProfileInfo'>
                                 <Avatar style={{
                                     width: '60px',
                                     height: '60px'                
-                                }} src={userProfilePic}/>
+                                }} src={profilePic} className='pic2'/>
                                 <div className='subUserInfo'>
                                     <h2>{emailPrefix}</h2>
                                     <h4>@{usersName}</h4>

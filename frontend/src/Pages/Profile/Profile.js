@@ -10,7 +10,7 @@ const Profile = () => {
 
     const [user] = useAuthState(auth);
     const [loggedInUser] = useLoggedInUser();
-    const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+    const userProfilePic = loggedInUser?.profilePic?loggedInUser.profilePic: "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
 
     return (
         <div className='ProfilePage'>

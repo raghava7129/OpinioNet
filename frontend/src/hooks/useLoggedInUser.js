@@ -12,12 +12,13 @@ const useLoggedInUser = () => {
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/loggedInUser?email=${email}`).then((response) => {
-            // console.log("response from loggedInUser : "+response.data[0]);
+            
+            console.log("response from loggedInUser : "+response.data[0]);
             setLoggedInUser(response.data[0]);
         }).catch((error) => {
-            console.error("Error:", error);
+            console.error("Error:", error); 
         });
-    }, [email, loggedInUser]);
+    }, [email]);
 
     return [loggedInUser, setLoggedInUser];
 

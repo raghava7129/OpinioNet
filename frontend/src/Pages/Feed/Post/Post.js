@@ -6,15 +6,22 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import FavBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
+import { useState } from 'react';
 
 const Post = ({ post }) => {
 
     const {name, username, imageURL, Voice, profilePic} = post;
 
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const handleTextClick = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     return (
         <div className="post">
             <div className="post_avatar">
-                <Avatar src={profilePic} />
+                <Avatar src={profilePic} className="profileImg"/>
             </div>
             <div className="post_body">
                 <div className="post_header">
@@ -27,11 +34,12 @@ const Post = ({ post }) => {
                         </h3>
                     </div>
 
-                    <div className="post_headerDescription">
+                    <div className={`post_headerDescription ${isExpanded ? 'expanded' : ''}`} onClick={handleTextClick}>
                         <p>{Voice}</p>
                     </div>
                     
-                    <img src={imageURL} alt="" width = '500'/>
+                    {imageURL? <img src={imageURL} alt="some Image" className='postImage'/> : ''}
+                    
                     <div className="post_footer">
                         <ChatBubbleOutlineIcon className="post_footerIcon" fontSize='small'/>
                         <RepeatIcon className="post_footerIcon" fontSize='small'/>

@@ -1,6 +1,6 @@
     //   Error : on Second time posting the imgURL is not getting updated and the ImgIcon is not changing
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Avatar, Button} from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./VoiceBox.css";
@@ -24,9 +24,12 @@ function VoiceBox(){
     const [FullName, setFullName] = useState('');
     const [UserName, setUserName] = useState('');
 
+    const defaultProfilePic = "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
+    const [profilePic, setProfilePic] = useState(loggedInUser?.profilePic || defaultProfilePic);
+
     const handleImgUpload = (e) => {
         e.preventDefault();
-        console.log("inside handleImgUpload");
+        // console.log("inside handleImgUpload");
         setIsLoaded(true);
         const image = e.target.files[0];
         console.log(image);
@@ -38,6 +41,7 @@ function VoiceBox(){
             console.log("inside axios");
             console.log(response.data.data.display_url);
             setImageURL(response.data.data.display_url);
+
             setIsLoaded(false);
             e.target.value = null;
 
@@ -47,6 +51,12 @@ function VoiceBox(){
         });
 
     }
+
+    useEffect(() => {
+        if (loggedInUser?.profilePic) {
+            setProfilePic(loggedInUser.profilePic);
+        }
+    }, [loggedInUser]);
 
     const handleVoice = (e) => {
         e.preventDefault();
@@ -58,12 +68,9 @@ function VoiceBox(){
             setUserName(usersName);
             const Name = loggedInUser?.fullName ? loggedInUser?.fullName : "User fullname";
             setFullName(Name);
-            const userProfilePic = loggedInUser?.profilePic?loggedInUser?.profilePic
-            : "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg";
-
 
             const userPost = {
-                profilePic: userProfilePic,
+                profilePic: profilePic,
                 Voice: Voice,
                 imageURL: imageURL,
                 username: usersName,
@@ -139,7 +146,7 @@ function VoiceBox(){
             <form onSubmit={handleVoice}>
 
                 <div className="VoiceBox_input">
-                    <Avatar src = "https://cdn.pixabay.com/photo/2024/01/10/13/08/ai-generated-8499572_960_720.jpg"/>
+                    <Avatar src = {profilePic}/>
 
                     <input type="text" 
                         id="Voice" 

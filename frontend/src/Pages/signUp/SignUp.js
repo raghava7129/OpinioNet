@@ -57,8 +57,10 @@ const SignUp = () => {
 
         axios.post("http://localhost:5000/register", User).then((response) => {
             console.log(response);
-            auth.SignUpWithEmailAndPassword(email, password);
-            navigate('/');
+            auth.SignUpWithEmailAndPassword(email, password).then((response) =>{
+
+                navigate('/');
+            });
         }).catch((error) => {
             console.error("Error:", error);
         });
