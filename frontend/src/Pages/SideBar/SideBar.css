@@ -4,7 +4,10 @@
     background-color:#faebd7;
     padding: 10px;
     /* margin-right: 30px; */
-    width:max-content;
+    /* width: 200px; */
+    flex: 0.2;
+    min-width: fit-content;
+
     height: 100vh;
     overflow-y: scroll;
     border-right: 2px solid #ffffff;

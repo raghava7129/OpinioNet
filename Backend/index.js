@@ -121,6 +121,22 @@ async function run() {
       }
     });
 
+    app.get('/getPosts', async (req, res) => {
+      try {
+        const username = req.query.username;
+        if (!username) {
+          return res.status(400).send("username parameter is required");
+        }
+
+        const posts = await postCollection.find({ username }).toArray();
+        res.status(200).send(posts);
+      } catch (error) {
+        console.error("Error getting user's posts:", error);
+        res.status(500).send("Internal server error");
+      }
+    });
+
+
     app.patch('/userUpdates/:email', async (req, res) => {
       try {
         const email = req.params.email;
