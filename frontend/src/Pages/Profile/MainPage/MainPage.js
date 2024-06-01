@@ -19,48 +19,17 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 
-// const style = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     width: 600,
-//     height: 600,
-//     bgcolor: 'background.paper',
-//     boxShadow: 24,
-//     borderRadius: 8,
-//   };
-  
-//   function EditChild({ dob, setDob }) {
-//     const [open, setOpen] = React.useState(false);
-  
-  
-//     const handleOpen = () => {
-//       setOpen(true);
-//     };
-//     const handleClose = () => {
-//       setOpen(false);
-//     };
-  
-//     return (
-//       <React.Fragment>
-//         <div className='birthdate-section' onClick={handleOpen}>
-//           <text>Edit</text>
-//         </div>
-//         <Modal
-//           hideBackdrop
-//           open={open}
-//           onClose={handleClose}
-//           aria-labelledby="child-modal-title"
-//           aria-describedby="child-modal-description"
-//         >
-  
-//         </Modal>
-//       </React.Fragment>
-//     );
-//   }
-
-
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 600,
+    height: 600,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    borderRadius: 8,
+  };
 
 const MainPage = ({user}) => {
 
@@ -81,13 +50,6 @@ const MainPage = ({user}) => {
 
     const [profilePic, setProfilePic] = useState(loggedInUser?.profilePic || defaultProfilePic);
     const [coverImg, setCoverImg] = useState(loggedInUser?.coverImg || defaultCoverImage );
-
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const handleTextClick = () => {
-        setIsExpanded(!isExpanded);
-    };
-
    
         const [posts, setPosts] = useState([]);
         const [yourFavoriteVoices, setYourFavoriteVoices] = useState([]);
@@ -152,8 +114,7 @@ const MainPage = ({user}) => {
             postHeading.style.borderBottom = "none";
             postHeading.style.borderWidth = "none";
         }
-
-
+          
         useEffect(() => {
             if (loggedInUser?.coverImg) {
                 setCoverImg(loggedInUser.coverImg);
@@ -210,9 +171,6 @@ const MainPage = ({user}) => {
             });
         }
 
-        
-
- 
         const handleUploadProfileImage = (e) => {
             e.preventDefault();
             // console.log("inside handleUploadProfileImage");
@@ -281,8 +239,9 @@ const MainPage = ({user}) => {
             }
         }, [loggedInUser]);
 
-
-      
+        const [open, setOpen] = useState(null);
+        const handleOpen = (id) => () => setOpen(id);
+        const handleClose = () => setOpen(null);
         
 
     return (
@@ -305,7 +264,8 @@ const MainPage = ({user}) => {
             <div className="profilePicContainer">
                 <div className="onHoverDiv">
                     <input type="file" id="profilePicUpload" accept="image/*" onChange={handleUploadProfileImage} />
-                     <Avatar src= {profilePic} className="profilePic"/>
+                    <Avatar src= {profilePic} className="profilePic"/>
+
                 </div>
 
                 <div className="editProfile">
@@ -314,20 +274,18 @@ const MainPage = ({user}) => {
                     </label>
 
                 </div>
-
-
             </div>
 
-            
+                <EditProfile user={user} loggedInUser={loggedInUser} className= "editProfileBtn" />
 
             <div className="profileCard1">
+
                 <div className="keys">
                     <h4>username</h4>
                     <h4>Email</h4>
                     {bio? <h4>bio</h4>:''}
                     {website? <h4>website</h4>:''}
                     {location? <h4>location</h4>:''}
-
                 </div>
 
                 <div className="values">
@@ -337,13 +295,9 @@ const MainPage = ({user}) => {
                     {bio? <h4>{bio}</h4>:''}
                     {website? <h4>{website}</h4>:''}
                     {location? <h4>{location}</h4>:''}
+                </div>
 
-                    
-                </div>
-                
-                <div>
-                    <EditProfile user={user} loggedInUser={loggedInUser} className= "editProfileBtn" />
-                </div>
+            
 
             </div>
 
@@ -357,19 +311,51 @@ const MainPage = ({user}) => {
                 <div className="yourPostsSection">
                     <div className="yourPosts">
                         {posts && posts.length > 0 ? (
-                            <ul className="postsList">
-                                {posts.map((post, _id) => (
-                                    <li key={_id} className="postCard">
-                                        <img src={post.imageURL || defaultCoverImage} alt="Post" className="postImage" />
+                        <ul className="postsList">
+                            {posts.map((post, index) => (
+                            <li key={index} className="postCard">
+                                <img
+                                    src={post.imageURL || defaultCoverImage}
+                                    alt="Post"
+                                    className="postImage"
+                                />
+
+                                    <div className="postContent">
+                                        
+                                        <p className="postText" >{post.Voice}</p>
+
+                                        <button className="voiceViewBtn" onClick={handleOpen(index)}>
+                                            View Full Voice
+                                        </button>
+
+                                        <Modal
+                                            open={open === index}
+                                            hideBackdrop
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description">
+
+                                                <Box sx={style} className="modalBox">
+                                                    <div className="modalBoxContent">
+                                                        <div className="header">
+                                                            <IconButton onClick={handleClose} className="closeBtn">
+                                                                <CloseIcon />
+                                                            </IconButton>
+                                                            <h2 className="header-title">Voice</h2>
+                                                        </div>
+                                                        <div className="content">
+                                                            <p className="voiceText">{post.Voice}</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </Box>
+
+                                        </Modal>
 
 
-                                        <div className="postContent">
-                                                <div className = {`postText ${isExpanded ? 'expanded' : ''}` }>
-                                                    <p onClick={handleTextClick}>{post.Voice}</p>
-                                                </div>
-                                        </div>
-                                    </li>
-                                ))}
+                                    </div>
+                            </li>
+                            ))}
                         </ul>
                         ) : (
                             <p>No posts available</p>

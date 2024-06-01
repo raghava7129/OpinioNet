@@ -139,6 +139,7 @@
     background-color: aliceblue;
     width: 100%;
     height: auto;
+    margin-top: -11%;
 }
 
 .profileCard1 .keys{
@@ -292,10 +293,48 @@ ul{
     display: flex;
 }
 
+.postContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 5px;
+    font-size: 1rem;
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.2em;
+    margin: 2px 3px;
+    max-height: max-content;
+}
 
+.postContent .voiceViewBtn{
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #585656;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.postContent .voiceViewBtn:hover {
+    background-color: #333;
+}
 
 .postContent .postText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     margin-top: 10px;
+    margin-left: 200px;
     font-size: 1rem;
     max-height: 3.6em; 
     overflow: hidden;
@@ -304,23 +343,81 @@ ul{
     -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     line-height: 1.2em; 
-    cursor: pointer;
-}
-
-.postContent .postText.expanded {
-    max-height: none;
-    -webkit-line-clamp: unset;
-}
-
-.voiceText {
-    font-size: 18px;
-    margin: 0;
-    color: #333;
-    flex: 1;
+    margin: 2px 3px;
 }
 
 .username {
     font-size: 16px;
     color: #666;
     margin-top: 5px;
+}
+
+.modalBox {
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalBox .modalBoxContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalBox .modalBoxContent .header {
+    position: fixed; 
+    top: 0;
+    width: 90%;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 2; 
+    padding: 10px;
+    
+}
+
+.modalBox .modalBoxContent .header .header-title {
+    font-size: 20px;
+    color: #333;
+}
+
+.modalBox .modalBoxContent .header .closeBtn {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.modalBox .modalBoxContent .content {
+    position: absolute;
+    top:auto;
+    padding: 30px;
+    background-color: #fff;
+    overflow-y: auto; 
+    max-height: 65vh;
+}
+
+.voiceText {
+    margin-top: 20px;
+    font-size: 16px;
+    color:#333;
+}
+
+
+.editProfileBtn{
+    position:absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
 }

@@ -35,28 +35,30 @@ function EditChild({ dob, setDob }) {
 
   return (
     <React.Fragment>
+
       <div className='birthdate-section' onClick={handleOpen}>
         <text>Edit</text>
       </div>
+
       <Modal
         hideBackdrop
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style, width: 300, height: 300, position: 'relative' }}>
-            <div className='text'>
-                <h2>Edit date of birth?</h2>
-                <p>This can only be changed a few times.</p>
-                <input
-                    type="date"
-                    onChange={e => setDob(e.target.value)}
-                />
+        aria-describedby="child-modal-description">
 
-                <Button className='e-button' onClick={() => { setOpen(false); }}>Cancel</Button>
-            </div>
-        </Box>
+          <Box sx={{ ...style, width: 300, height: 300, position: 'relative' }}>
+              <div className='text'>
+                  <h2>Edit date of birth?</h2>
+                  <p>This can only be changed a few times.</p>
+                  <input
+                      type="date"
+                      onChange={e => setDob(e.target.value)}
+                  />
+
+                  <Button className='e-button' onClick={() => { setOpen(false); }}>Cancel</Button>
+              </div>
+          </Box>
 
       </Modal>
     </React.Fragment>
@@ -74,6 +76,7 @@ export default function EditProfile({ user, loggedInUser }) {
 
 
   const HandleSave = () => {
+
     const editedInfo = {
       name,
       bio,
@@ -81,7 +84,9 @@ export default function EditProfile({ user, loggedInUser }) {
       website,
       dob,
     }
+
     console.log(editedInfo);
+    
     fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
       method: "PATCH",
       headers: {
