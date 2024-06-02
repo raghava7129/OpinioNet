@@ -136,11 +136,7 @@ const SideBar = ({handleLogout, user, profilePic}) => {
                             
                             </div>
                         </MenuItem>
-
-                        <ListItemIcon className='doneIcon'><DoneIcon /></ListItemIcon>
-
                         <Divider />
-                        <MenuItem onClick={handleClose}>Add an existing account</MenuItem>
                         <MenuItem onClick = {handleLogout}>Log out @{usersName}</MenuItem>
 
                     </Menu>

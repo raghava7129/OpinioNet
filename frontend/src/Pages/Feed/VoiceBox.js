@@ -1,5 +1,3 @@
-    //   Error : on Second time posting the imgURL is not getting updated and the ImgIcon is not changing
-
 import React, { useState, useEffect } from "react";
 import {Avatar, Button} from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";

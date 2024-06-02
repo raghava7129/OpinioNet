@@ -34,13 +34,32 @@ const style = {
 const MainPage = ({user}) => {
 
     const navigate = useNavigate();
-    const [loggedInUser] = useLoggedInUser();
+    const [loggedInUser, setLoggedInUser] = useLoggedInUser();
     const username = loggedInUser?.username ? loggedInUser?.username : user?.email.split('@')[0];
     const email = user?.email;
     const FullName = loggedInUser?.fullName;
     const bio = loggedInUser?.bio;
     const location = loggedInUser?.location;
     const website = loggedInUser?.website;
+
+    const [profileData, setProfileData] = useState({
+        name: loggedInUser?.name,
+        bio: loggedInUser?.bio,
+        location: loggedInUser?.location,
+        website: loggedInUser?.website,
+        dob: loggedInUser?.dob,
+      });
+
+      const handleProfileSave = (updatedData) => {
+        setProfileData((prevData) => ({
+          ...prevData,
+          ...updatedData,
+        }));
+        setLoggedInUser((prevUser) => ({
+          ...prevUser,
+          ...updatedData,
+        }));
+      };
 
     const [imageURL, setCoverImgURL] = useState("");
     const [isLoadedDP, setIsLoadedDP] = useState(false);
@@ -91,7 +110,7 @@ const MainPage = ({user}) => {
             
             postsHeading.style.borderRadius = "10px";
             postsHeading.style.borderWidth = "2px";
-            postsHeading.style.borderBottom = "2px solid #949398FF";
+            postsHeading.style.borderBottom = "2px solid #62fcb7";
 
             favoriteVoices.style.borderBottom = "none";
             favoriteVoices.style.borderWidth = "none";
@@ -109,11 +128,15 @@ const MainPage = ({user}) => {
 
             favoriteVoices.style.borderRadius = "10px";
             favoriteVoices.style.borderWidth = "2px";
-            favoriteVoices.style.borderBottom = "2px solid #949398FF";
+            favoriteVoices.style.borderBottom = "2px solid #62fcb7";
 
             postHeading.style.borderBottom = "none";
             postHeading.style.borderWidth = "none";
         }
+
+        useEffect(() => {
+            handlePostClick();
+        }, []);
           
         useEffect(() => {
             if (loggedInUser?.coverImg) {
@@ -242,6 +265,8 @@ const MainPage = ({user}) => {
         const [open, setOpen] = useState(null);
         const handleOpen = (id) => () => setOpen(id);
         const handleClose = () => setOpen(null);
+
+
         
 
     return (
@@ -270,36 +295,30 @@ const MainPage = ({user}) => {
 
                 <div className="editProfile">
                     <label htmlFor="profilePicUpload" className="editProfileIcon">
-                        {isLoadedDP ? <RotateLeftIcon style={{ fontSize: 30, color: "black"}} /> : <EditIcon/>}
+                        {isLoadedDP ? <RotateLeftIcon style={{ fontSize: 40, color: "black"}} /> : <EditIcon/>}
                     </label>
 
                 </div>
             </div>
 
-                <EditProfile user={user} loggedInUser={loggedInUser} className= "editProfileBtn" />
+            <EditProfile user={user} loggedInUser={loggedInUser} onProfileSave={handleProfileSave} className="editProfileBtn" />
 
-            <div className="profileCard1">
-
-                <div className="keys">
-                    <h4>username</h4>
-                    <h4>Email</h4>
-                    {bio? <h4>bio</h4>:''}
-                    {website? <h4>website</h4>:''}
-                    {location? <h4>location</h4>:''}
+                <div className="profileCard1">
+                    <div className="keys">
+                        <h4 title="Username">Username</h4>
+                        <h4 title="Email">Email</h4>
+                        {bio && <h4 title="Bio">Bio</h4>}
+                        {website && <h4 title="Website">Website</h4>}
+                        {location && <h4 title="Location">Location</h4>}
+                    </div>
+                    <div className="values">
+                        <h4 title={username}>{username}</h4>
+                        <h4 title={email}>{email}</h4>
+                        {bio && <h4 title={bio}>{bio}</h4>}
+                        {website && <h4 title={website}>{website}</h4>}
+                        {location && <h4 title={location}>{location}</h4>}
+                    </div>
                 </div>
-
-                <div className="values">
-                    <h4>{username}</h4>
-                    <h4>{email}</h4>
-
-                    {bio? <h4>{bio}</h4>:''}
-                    {website? <h4>{website}</h4>:''}
-                    {location? <h4>{location}</h4>:''}
-                </div>
-
-            
-
-            </div>
 
             <div className="section">
 
@@ -335,7 +354,9 @@ const MainPage = ({user}) => {
                                             aria-labelledby="modal-modal-title"
                                             aria-describedby="modal-modal-description">
 
-                                                <Box sx={style} className="modalBox">
+                                            <div className="overlay" onClick={handleClose}>
+
+                                                <Box sx={style} className="modalBox" onClick={(e) => e.stopPropagation()}>
                                                     <div className="modalBoxContent">
                                                         <div className="header">
                                                             <IconButton onClick={handleClose} className="closeBtn">
@@ -349,6 +370,7 @@ const MainPage = ({user}) => {
                                                     </div>
                                                     
                                                 </Box>
+                                            </div>
 
                                         </Modal>
 

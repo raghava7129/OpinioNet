@@ -1,7 +1,7 @@
 .FeedPage{
-    flex: 0.8;
+    flex: 0.5;
     border-right: 1px solid #e0e0e0;
-    padding: 0 180px;
+    padding: 0 200px;
     height: 100vh;
     overflow-y: auto;
 
@@ -13,24 +13,26 @@
 }
 
 
-.Header {
+.FeedPage .Header {
     position: fixed;
     top: 0;
     background-color: white;
-    width: 60%;
+    width: 58%;
     /* flex: 0.8; */
-    flex: 1;
+    /* flex: 1; */
     z-index: 1000;
-    padding: 0 180px;
-    box-sizing: border-box;
+   
+    
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 10px;
 }
 
 
 
-.Title{
+.FeedPage .Title{
     font-size: 30px;
     color: hsl(216, 32%, 58%);
     width: 100%;
@@ -53,4 +55,21 @@
     padding: 20px;
     color: white;
     font-size: 20px;
+}
+
+.FeedPage .refreshBtn{
+
+    display: flex;
+    position: relative;
+    left: 70%;
+
+    margin-bottom: 7px;
+    background-color: #ff8c00;
+    color: white;
+    border-radius: 10px;
+}
+
+.FeedPage .refreshBtn:hover{
+    background-color: #fdb256;
+    color: #ffffff;
 }

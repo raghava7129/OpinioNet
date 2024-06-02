@@ -23,8 +23,8 @@
 
 .BackArrow:hover{
     color: #e4d998;
-    stroke: rgb(21, 0, 255);
-    stroke-width: 0.8px;
+    stroke: rgb(0, 0, 0);
+    stroke-width: 0.2px;
 }
 
 .NavBar h1{
@@ -56,4 +56,66 @@
 
 .NavBar h3{
     font-family: cursive;
+}
+
+
+.dropdownContainer {
+    position: relative;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+
+    background-color: #f8f3d6;
+    border: 2px solid snow;
+    border-radius: 0px 0px 10px 10px;
+    
+    width: max-content;
+    padding: 10px;
+}
+
+.dropdownMenu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 12px 16px;
+    font-size: 18px;
+    font-family: cursive;
+    font-style: bold;
+}
+
+.dropdownMenu a:hover {
+    background-color: #f4e89a;
+    color: black;
+    border-radius: 15px;
+}
+
+.dropdownMenu:hover .dropdownContent {
+    display: block;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdownMenu .dropdownContent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownMenu .dropdownContent a:hover {
+    background-color: #f1f1f1;
 }

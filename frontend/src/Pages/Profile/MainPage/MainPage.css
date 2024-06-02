@@ -78,7 +78,8 @@
     width:max-content;
     
     justify-self: center;
-    margin-left: 10%;
+    margin-left: 8%;
+   
 }
 
 
@@ -121,37 +122,71 @@
 
 .editProfileIcon {
     z-index: 2;
+    color: rgb(40, 40, 41);
+    cursor: pointer;
 }
 
 .profilePic{
+    position: absolute;
     transform: scale(3, 3);
-    margin-left: 10%;
-    position: relative;
     z-index: 1;
 }
 
-.profileCard1{
+.profileCard1 {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid rgb(185, 221, 253);
+    border-radius: 10px;
     background-color: aliceblue;
-    width: 100%;
-    height: auto;
-    margin-top: -11%;
-}
-
-.profileCard1 .keys{
-    font-size: 20px;
-    color:rgb(98, 252, 183);
-}
-
-.profileCard1 .values{
-    font-size: 20px;
+    width: fit-content;
+    margin: auto;
+    max-width: 80%;
+    overflow: hidden; 
+    transform: translate(0px, -10px);
+  }
+  
+  .profileCard1 .keys, .profileCard1 .values {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .profileCard1 .keys h4, .profileCard1 .values h4 {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 40vw;
+    cursor: pointer;
+  }
+  
+  .keys h4 {
+    font-weight: bold;
+    font-size: large;
+    color: rgb(98, 172, 252);
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .values h4 {
+    font-size: large;
     color: #949398FF;
-}
-
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  @media (max-width: 600px) {
+    .profileCard1 {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .profileCard1 .values h4, .profileCard1 .keys h4 {
+      max-width: 100%;
+    }
+  }
+  
+  
 
 .section{
     display: flex;
@@ -173,38 +208,42 @@
     height: auto;
 }
 
-.yourPostsHeading{
+.Headings .yourPostsHeading{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 40%;
     height: auto;
     cursor: pointer;
+
+    font-family: cursive;
 }
 
-.yourPostsHeading:hover{
+.Headings .yourPostsHeading:hover{
     border-radius: 15px;
     margin: 0px 10px;
     color: rgb(98, 252, 183);
     background-color: #949398FF;
 }
 
-.yourFavoriteHeading{
+.Headings .yourFavoriteHeading{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 40%;
     height: auto;
     cursor: pointer;
+    font-family: cursive;
     
 }
 
-.yourFavoriteHeading:hover{
+.Headings .yourFavoriteHeading:hover{
+    width: 40%;
     border-radius: 15px;
     margin: 0px 10px;
-    color: rgb(98, 252, 183);
+    color: #62fcb7;
     background-color: #949398FF;
 }
 
@@ -226,7 +265,6 @@
     align-items: center;
     width: 100%;
     height: auto;
-    display: none;
 }
 
 ul{
