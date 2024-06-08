@@ -1,0 +1,155 @@
+.SubscriptionPage{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.Intro {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 100%;
+}
+
+.Intro-Text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+  
+  .Intro-Text h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .Intro-Text p {
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+
+
+  .PlanningOptionsBtn{
+    cursor: pointer;
+    border: none;
+    background-color: #ffffff;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 10px;
+  }
+
+  .PlanningOptionsBtn button {
+    padding: 10px 40px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+ 
+  .PlanningOptionsBtn button:hover {
+    background-color: #9aa6b3;
+  }
+
+
+  .SubscriptionPlans {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .MonthlyPlan, .YearlyPlan {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .Plan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .Plan:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .Plan h2 {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .Plan h3 {
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  .Plan p {
+    font-size: 1em;
+    color: #666;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .Plan button {
+    background-color: #f3c58c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    font-size: 16px;
+  }
+  
+  .Plan button:hover {
+    background-color: #ff9e28;
+  }
+  
+  .NoPlans {
+    font-size: 1.2em;
+    color: #999;
+    margin-top: 20px;
+  }
+
+
+  .FeaturesList {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .FeaturesList li {
+    font-size: 1em;
+    color: #666;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .FeaturesList li:last-child {
+    border-bottom: none;
+  }
+  

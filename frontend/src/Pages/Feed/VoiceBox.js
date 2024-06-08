@@ -78,20 +78,55 @@ function VoiceBox(){
 
             console.log("from normal signUp : "+userPost);
 
+            axios.get(`http://localhost:5000/subscriptions/user/${userEmail}`).then((response) => {
+            if (response.data.length === 1) {
+                const prevPostLimit = response.data[0].postLimit;
+
+                if(prevPostLimit >0){
+
+
+                    axios.patch(`http://localhost:5000/subscriptions/user/${userEmail}`, {
+                        postLimit: prevPostLimit - 1
+                      })
+                      .then((response) => {
+                        
+                        fetch("http://localhost:5000/post", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(userPost),
+                        }).then((response) => {
+                            console.log("Response:", response);
+                            
+                        }).catch((error) => {
+                            console.error("Error:", error);
+                        });
+
+                      }).catch((error) => {
+                        console.error('Error in patch request:', error);
+                        alert('from voice box Error adding subscription1');
+                      });
+
+                }
+                else{
+                    alert("You have reached your post limit, Please upgrade your subscription");
+                }
+            }
+            else {
+                console.error('Subscription not found or multiple subscriptions returned');
+                alert('Subscription not found');
+            }
+        }).catch((error) => {
+            console.error('Error in get request:', error);
+            alert('Error adding subscription2');
+        });
+
+
+
            
 
-            fetch("http://localhost:5000/post", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userPost),
-            }).then((response) => {
-                console.log("Response:", response);
-                
-            }).catch((error) => {
-                console.error("Error:", error);
-            });
+            
         
 
         }
@@ -115,20 +150,50 @@ function VoiceBox(){
 
             console.log("from Google signUp : "+userPost);
 
-            
-
-            fetch("http://localhost:5000/post", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userPost),
-            }).then((response) => {
-                console.log("Response:", response);
-                
+            axios.get(`http://localhost:5000/subscriptions/user/${userEmail}`).then((response) => {
+                if (response.data.length === 1) {
+                    const prevPostLimit = response.data[0].postLimit;
+    
+                    if(prevPostLimit >0){
+    
+    
+                        axios.patch(`http://localhost:5000/subscriptions/user/${userEmail}`, {
+                            postLimit: prevPostLimit - 1 
+                          }).then((response) => {
+                            
+                            fetch("http://localhost:5000/post", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(userPost),
+                            }).then((response) => {
+                                console.log("Response:", response);
+                                
+                            }).catch((error) => {
+                                console.error("Error:", error);
+                            });
+    
+                        }).catch((error) => {
+                            console.error('Error in patch request:', error);
+                            alert('VoiceBox Google Error adding subscription1');
+                        });
+    
+                    }
+                    else{
+                        alert("You have reached your post limit, Please upgrade your subscription");
+                    }
+                }
+                else {
+                    console.error('Subscription not found or multiple subscriptions returned');
+                    alert('Subscription not found');
+                }
             }).catch((error) => {
-                console.error("Error:", error);
+                console.error('Error in get request:', error);
+                alert('Error adding subscription2');
             });
+
+            
         }
 
         

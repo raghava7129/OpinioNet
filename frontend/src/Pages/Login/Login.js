@@ -73,8 +73,10 @@ const Login = () => {
     const handleGoogleLogin = async() => {
         console.log('Google button clicked');
         try{
-            await signInWithGoogle();
-            
+           await signInWithGoogle();
+
+           
+
 
         }catch(signInErrorGoogle){
             console.log(signInErrorGoogle);
@@ -84,8 +86,37 @@ const Login = () => {
 
     useEffect(() => {
         if (userGoogle) {
-            console.log('User logged in with Google:', userGoogle);
-            navigate('/');
+
+            console.log(userGoogle._tokenResponse.email);
+            const userEmail = userGoogle._tokenResponse.email;
+
+            axios.get(`http://localhost:5000/subscriptions/user/${userEmail}`).then((response) => {
+                if (response.data.length === 1) {
+                    // userDefaultSubscription already exists !!!
+                }
+                else{
+
+                    axios.post("http://localhost:5000/subscriptions/user", {
+                        email: userEmail,
+                        postLimit: 5
+                    }).then((res) => {
+                        console.log(res);
+
+                        console.log('User logged in with Google:', userGoogle);
+                        navigate('/');
+
+                    }).catch((err) => {
+                        console.error("Error:", err);
+                    });
+                    
+                }
+            }).catch((error) => {
+                console.error('Error in get request:', error);
+                alert('Error adding subscription2');
+            });
+            
+
+            
         }
     }, [userGoogle, navigate]);
 

@@ -1,0 +1,40 @@
+.SettingsPage{
+    flex: 0.8;
+    border-right: 1px solid #e0e0e0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    
+    scrollbar-width: thin;
+    scrollbar-color: rgb(150, 136, 136) rgb(183, 234, 234);
+}
+
+.SettingsPage::-webkit-scrollbar {
+    width: 5px;
+}
+
+.SettingsPage::-webkit-scrollbar-track {
+    background: rgb(124, 148, 148);
+}
+
+.SettingsPage::-webkit-scrollbar-thumb {
+    background-color: rgb(84, 81, 81);
+    border-radius: 10px;
+    border: 2px solid rgb(157, 240, 240);
+}
+
+.settings-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.setting_options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}

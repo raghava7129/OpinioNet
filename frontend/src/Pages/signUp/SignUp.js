@@ -48,6 +48,8 @@ const SignUp = () => {
             return;
         }
         createUserWithEmailAndPassword(email, password);
+
+        
         
         const User = {
             username: username,
@@ -58,6 +60,15 @@ const SignUp = () => {
         axios.post("http://localhost:5000/register", User).then((response) => {
             console.log(response);
             auth.SignUpWithEmailAndPassword(email, password).then((response) =>{
+
+                axios.post("http://localhost:5000/subscriptions/user:", {
+                    email: email,
+                    postLimit: 5
+                }).then((res) => {
+                    console.log(res);
+                }).catch((err) => {
+                    console.error("Error:", err);
+                });
 
                 navigate('/');
             });

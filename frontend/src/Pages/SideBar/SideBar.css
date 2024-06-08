@@ -30,7 +30,8 @@
 
 .sidebar .profileContainer{
     width: auto;
-    background-color: #fbd9af;
+    /* background-color: #fbd9af; */
+    background-color: #f3c58c;
     padding: 5px 20px;
     border-radius: 50px;
     margin-top: 20px;
