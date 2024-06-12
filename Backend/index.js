@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const base64 = require('base-64');
+const axios = require('axios');
 
 const {connectToDatabase } = require('./Config/db');
 const subscriptionRoutes = require('./Routes/SubscriptionRoutes/SubscriptionRoutes');
@@ -107,6 +109,34 @@ connectToDatabase().then((collections) => {
 
     subscriptionRoutes(app, db);
 
+    app.get('/checkInVoiceStatus', async (req, res)=>{
+      try{
+        const invoiceId = req.query.inVoiceId;
+
+        // console.log("from backEnd /checkInVoiceStatus ==> ",invoiceId);
+
+        const key_id = process.env.RAZORPAY_KEY_ID;
+        const key_secret = process.env.RAZORPAY_KEY_SECRET;
+        const auth = base64.encode(`${key_id}:${key_secret}`);
+
+        const response = await axios.get(`https://api.razorpay.com/v1/invoices/${invoiceId}`, {
+          headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        res.json(response.data);
+
+      }catch(error){
+        if (error.response) {
+          console.error('Error response:', error.response.data);
+          res.status(error.response.status).json(error.response.data);
+        } else {
+          console.error('Error checking invoice status :', error.message);
+        }
+      }
+    });
+
     // post endpoints
 
     app.post('/post', async (req, res) => {
@@ -137,6 +167,59 @@ connectToDatabase().then((collections) => {
       } catch (error) {
         console.log("Error inserting user:", error);
         res.status(500).send("Error inserting user");
+      }
+    });
+
+    const currentTime = new Date();
+    const expireTime = new Date(currentTime.getTime() + 24 * 60 * 60 * 1000);
+    const expireByTimestamp = Math.floor(expireTime.getTime() / 1000);
+
+
+    app.post('/create_invoice', async (req, res) => {
+      const { plan, NAME, EMAIL } = req.body;
+      const key_id = process.env.RAZORPAY_KEY_ID;
+      const key_secret = process.env.RAZORPAY_KEY_SECRET;
+      const auth = base64.encode(`${key_id}:${key_secret}`);
+
+      const data = {
+        type: "invoice",
+        description: plan.description,
+        partial_payment: false,
+        customer: {
+          name: NAME,
+          email: EMAIL
+        },
+        line_items: [
+          {
+            name: plan.name,
+            description: plan.description,
+            amount: plan.price*100,  
+            currency: "INR",
+            quantity: 1
+          }
+        ],
+        sms_notify: 0,
+        email_notify: 1,
+        currency: "INR",
+        expire_by: expireByTimestamp
+      };
+    
+      try {
+        const response = await axios.post('https://api.razorpay.com/v1/invoices', data, {
+          headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        res.json(response.data);
+      } catch (error) {
+        if (error.response) {
+          console.error('Error response:', error.response.data);
+          res.status(error.response.status).json(error.response.data);
+        } else {
+          console.error('Error creating invoice:', error.message);
+          res.status(500).send('Error creating invoice');
+        }
       }
     });
 

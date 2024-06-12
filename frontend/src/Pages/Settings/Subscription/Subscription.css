@@ -111,20 +111,37 @@
     margin: 10px 0;
   }
   
-  .Plan button {
-    background-color: #f3c58c;
+  .Plan .RazorPayBtn {
+    background-color: #5bc4ea;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s;
-
     font-size: 16px;
-  }
+    margin-top: 5px;
+}
+
+.Plan .InVoiceBtn {
+    background-color: #94d3a5;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
   
-  .Plan button:hover {
-    background-color: #ff9e28;
+  .Plan .RazorPayBtn:hover {
+    background-color: #80cde9;
+  }
+
+  .Plan .InVoiceBtn:hover {
+    background-color: #abd4b6;
   }
   
   .NoPlans {
