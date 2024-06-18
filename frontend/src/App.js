@@ -11,6 +11,7 @@ import Profile from './Pages/Profile/Profile';
 import Settings from './Pages/Settings/Settings';
 import More from './Pages/More/More';
 import Feed from './Pages/Feed/Feed';
+import OTP_page from './Pages/OTP_Page/OTP_page';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/OTPVerification" element={<OTP_page />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>

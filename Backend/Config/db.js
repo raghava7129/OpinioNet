@@ -20,7 +20,8 @@ async function connectToDatabase(){
           postCollection: db.collection('posts'),
           userCollection: db.collection('users'),
           subscriptionCollection: db.collection('subscriptionCollection'),
-          userSubscriptionDetailsCollection: db.collection('userSubscriptionDetails')
+          userSubscriptionDetailsCollection: db.collection('userSubscriptionDetails'),
+          LoginTrackCollection: db.collection('LoginTrack')
         };
     } catch (error) {
     console.error('Failed to connect to the database', error);

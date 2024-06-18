@@ -7,6 +7,8 @@ const axios = require('axios');
 const {connectToDatabase } = require('./Config/db');
 const subscriptionRoutes = require('./Routes/SubscriptionRoutes/SubscriptionRoutes');
 
+const {sendOTP, verifyOTP} = require('./Controllers/emailController/emailController');
+
 require('dotenv').config();
 
 const app = express();
@@ -137,6 +139,7 @@ connectToDatabase().then((collections) => {
       }
     });
 
+
     // post endpoints
 
     app.post('/post', async (req, res) => {
@@ -223,6 +226,56 @@ connectToDatabase().then((collections) => {
       }
     });
 
+
+    app.post('/LoginTrack', async (req, res) => {
+      const { email, deviceInfo } = req.body;
+
+      try {
+        let deviceInfoDoc = await db.LoginTrackCollection.findOne({ email });
+
+        if (!deviceInfoDoc) {
+
+            await db.LoginTrackCollection.insertOne({
+              email: email,
+              sessions: [{
+                  deviceInfo: deviceInfo,
+                  loginTime: new Date()
+              }]
+            });
+            res.status(201).json({ message: 'Device information saved successfully' });
+
+        }
+        else{
+
+          await db.LoginTrackCollection.updateOne(
+            { email: email },
+            {
+                $push: {
+                    sessions: {
+                        deviceInfo: deviceInfo,
+                        loginTime: new Date()
+                    }
+                }
+            }
+        );
+        res.status(200).json({ message: 'Device information updated successfully' });
+
+        }
+
+        
+      } catch (error) {
+        console.error('Error saving device information:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+
+
+    app.post('/send-otp', sendOTP);
+
+    app.post('/verify-otp', verifyOTP);
+
+
+
      // patch endpoints
 
     app.patch('/userUpdates/:email', async (req, res) => {
@@ -263,7 +316,7 @@ connectToDatabase().then((collections) => {
           console.error("Error updating posts:", error);
           res.status(500).send("Error updating posts");
       }
-  });
+   });
   
 
     app.listen(port, () => {

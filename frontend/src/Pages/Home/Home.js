@@ -11,6 +11,8 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { useEffect, useState } from 'react';
 
 import profilePic from '../../Pages/Profile/MainPage/MainPage'
+import GoogleTranslate from '../../Components/GoogleTranslate/GoogleTranslate';
+import LanguageSelector from '../../Components/LanguageSelector/LanguageSelector';
 
 const Home = () => {
 
@@ -45,7 +47,13 @@ const Home = () => {
       <div className='HomePage'>
         <SideBar handleLogout = {handleLogout} user = {user} profilePic =
            {profilePic} className='sideBar'/>
+
+
         <Outlet />
+          
+        {/* <LanguageSelector />
+        <GoogleTranslate /> */}
+
         <Widges />
       </div>
 

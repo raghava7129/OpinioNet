@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 10 !important;
+}
 
 .App-logo {
   height: 40vmin;
