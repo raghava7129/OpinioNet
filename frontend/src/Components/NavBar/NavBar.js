@@ -10,19 +10,22 @@ import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import auth  from '../../firebase.init';
 
-const NavBar = ({heading, username}) => {
+import { useTranslation } from 'react-i18next';
 
-    const navigate = useNavigate();
+const NavBar = ({heading, username, handleBackClick}) => {
 
-    const handleBackClick = () =>{
-        navigate('/');
-    }
+    const {t} = useTranslation();
+
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleDropdownToggle = () =>{
         setIsDropdownOpen(!isDropdownOpen);
     }
+
+    const handleMenuItemClick = () => {
+        setIsDropdownOpen(false);
+      };
 
     const handleLogout = () => {
         signOut(auth);
@@ -44,9 +47,9 @@ const NavBar = ({heading, username}) => {
 
                 {isDropdownOpen && (
                      <div className='dropdownMenu'>
-                        <Link to='/home/Notifications'>Notifications</Link>
-                        <Link to='/home/Settings'>Settings</Link>
-                        <Link to='/' onClick={handleLogout}>Logout</Link>
+                        <Link to='/home/Notifications' onClick={handleMenuItemClick}> {t("sidebar_notifications")} </Link>
+                        <Link to='/home/Settings' onClick={handleMenuItemClick}> {t("sidebar_settings")} </Link>
+                        <Link to='/' onClick={handleLogout}> {t("Logout")} </Link>
 
                     </div>
                 )}

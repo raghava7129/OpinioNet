@@ -21,12 +21,16 @@ import { EmailAuthCredential } from 'firebase/auth';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+import {useTranslation} from 'react-i18next';
+
 
 const handleHover = () => {
     console.log(`Hovered`);
 }
 
 const SideBar = ({handleLogout, user, profilePic}) => {
+
+    const {t} = useTranslation();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
@@ -57,35 +61,35 @@ const SideBar = ({handleLogout, user, profilePic}) => {
         <div className='sidebar'>
 
             <CustomLink to="/home">
-                <SideBarOptions active={location.pathname === '/home'} Icon={HomeIcon} text="Home" />
+                <SideBarOptions active={location.pathname === '/home'} Icon={HomeIcon} text={t("sidebar_home")} />
             </CustomLink>
 
             <CustomLink to='/home/Explore'>
-                <SideBarOptions active={location.pathname === '/home/Explore'} Icon={ExploreIcon} text='Explore' />
+                <SideBarOptions active={location.pathname === '/home/Explore'} Icon={ExploreIcon} text={t("sidebar_explore")} />
             </CustomLink>
 
             <CustomLink to='/home/Messages' >
-                <SideBarOptions active={location.pathname === '/home/Messages'} Icon={MailOutLineIcon} text='Messages' />
+                <SideBarOptions active={location.pathname === '/home/Messages'} Icon={MailOutLineIcon} text={t("sidebar_messages")} />
             </CustomLink>
 
             <CustomLink to='/home/Notifications'>
-                <SideBarOptions active={location.pathname === '/home/Notifications'} Icon={NotificationIcon} text='Notification' />
+                <SideBarOptions active={location.pathname === '/home/Notifications'} Icon={NotificationIcon} text={t("sidebar_notifications")} />
             </CustomLink>
             
             <CustomLink to='/home/Profile'>
-                <SideBarOptions active={location.pathname === '/home/Profile'} Icon={ProfileIcon} text='Profile' />
+                <SideBarOptions active={location.pathname === '/home/Profile'} Icon={ProfileIcon} text={t("sidebar_profile")} />
             </CustomLink>
 
             <CustomLink to='/home/Settings'>
-                <SideBarOptions active={location.pathname === '/home/Settings'} Icon={SettingsIcon} text='Settings' />
+                <SideBarOptions active={location.pathname === '/home/Settings'} Icon={SettingsIcon} text={t("sidebar_settings")} />
             </CustomLink>
 
             <CustomLink to='/home/More'>
-                <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text='More' />
+                <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text={t("sidebar_more")} />
             </CustomLink>
 
             <Link to='/' className='VoiceBoxBtn'>
-                Speak your mind
+                {t("speak_your_mind")}
             </Link>
             
             <div className='profileContainer'> 
@@ -137,7 +141,7 @@ const SideBar = ({handleLogout, user, profilePic}) => {
                             </div>
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick = {handleLogout}>Log out @{usersName}</MenuItem>
+                        <MenuItem onClick = {handleLogout}> {t("Logout")} @{usersName}</MenuItem>
 
                     </Menu>
 

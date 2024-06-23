@@ -13,7 +13,10 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 
+import { useTranslation } from 'react-i18next';
+
 const Widges = () => {
+    const { t } = useTranslation();
 
     const [loggedInUser] = useLoggedInUser();
 
@@ -52,7 +55,7 @@ const Widges = () => {
 
     return (
         <div className="widges">
-            <h1>Widges</h1>
+            <h1>{t("Widges")}</h1>
             <FreeSolo inputValue={inputValue} handleInputChange={handleInputChange} />
 
             <div className="yourPostsSection">
@@ -67,7 +70,7 @@ const Widges = () => {
                                         <p className="postText" >{post.Voice}</p>
 
                                         <button className="voiceViewBtn" onClick={handleOpen(index)}>
-                                            View Full Voice
+                                            {t("View_Full_Voice")}
                                         </button>
 
                                         <Modal
@@ -83,7 +86,7 @@ const Widges = () => {
                                                             <IconButton onClick={handleClose} className="closeBtn">
                                                                 <CloseIcon />
                                                             </IconButton>
-                                                            <h2 className="header-title">Voice</h2>
+                                                            <h2 className="header-title"> {t("Voice")} </h2>
                                                         </div>
                                                         <div className="content">
 
@@ -104,7 +107,7 @@ const Widges = () => {
                             ))}
                         </ul>
                         ) : (
-                            <p>No posts available</p>
+                            <p>{t("No_posts_available")}</p>
                         )}
                     </div>
                 </div>

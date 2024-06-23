@@ -7,7 +7,11 @@ import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
+import {useTranslation} from 'react-i18next';
+
 function VoiceBox(){
+
+    const {t} = useTranslation();
 
     const [Voice, setVoice] = useState("");
     const [imageURL, setImageURL] = useState("");
@@ -213,7 +217,7 @@ function VoiceBox(){
 
                     <input type="text" 
                         id="Voice" 
-                        placeholder="speak your mind"
+                        placeholder={t("speak_your_mind")}
                         onChange={(e)=>{setVoice(e.target.value)}}
                         value={Voice}
                         required
@@ -240,7 +244,7 @@ function VoiceBox(){
                     />
 
                     <Button className = "VoiceBox__VoiceButton"  type = "submit" >
-                        Send Your Voice
+                        {t("send_your_voice")}
                     </Button>
 
                 </div>

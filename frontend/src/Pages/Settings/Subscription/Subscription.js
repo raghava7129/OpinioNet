@@ -5,9 +5,14 @@
   import { useAuthState } from 'react-firebase-hooks/auth';
   import auth  from '../../../firebase.init';
 
+  import { useTranslation } from 'react-i18next';
+  import i18next from 'i18next';
+
 
 
   const Subscription = () => {
+
+    const {t} = useTranslation();
 
     const [loggedInUser] = useLoggedInUser();
     const user = useAuthState(auth);
@@ -104,6 +109,9 @@
       });
       rzp1.open();
     };
+
+
+
 
     const checkInvoiceStatus = async (inVoiceId, email, plan, intervalId) => {
       try{
@@ -238,18 +246,82 @@
       initializeRazorpay();
     }, []);
 
+    // useEffect(() => {
+    //   const fetchAndTranslatePlans = async () => {
+    //     const translatePlan = async (plan) => {
+    //       const text = `Name: ${plan.name}\nDescription: ${plan.description}\nFeatures: ${plan.features.join(', ')}`;
+    //       try {
+    //         const response = await axios.post('http://localhost:5000/translate', { text, targetLanguage: i18next.language });
+    //         const translatedText = response.data.translatedText.split('\n');
+    //         return {
+    //           ...plan,
+    //           name: translatedText[0].split(': ')[1],
+    //           description: translatedText[1].split(': ')[1],
+    //           features: translatedText[2].split(': ')[1].split(', '),
+    //         };
+    //       } catch (error) {
+    //         console.error('Error translating text:', error);
+    //         return plan;
+    //       }
+    //     };
+  
+    //     const translatedMonthlyPlans = await Promise.all(monthlyPlan.map(translatePlan));
+    //     setMonthlyPlan(translatedMonthlyPlans);
+  
+    //     const translatedYearlyPlans = await Promise.all(yearlyPlan.map(translatePlan));
+    //     setYearlyPlan(translatedYearlyPlans);
+    //   };
+  
+    //   fetchAndTranslatePlans();
+    // }, [i18next.language, monthlyPlan, yearlyPlan]);
+
+    const translateText = async (plan, targetLanguage) => {
+      const text = `
+        Name: ${plan.name}
+        Description: ${plan.description}
+        Features: ${plan.features.join(', ')}`;
+  
+      try {
+        const response = await axios.post('http://localhost:5000/translate', {
+          text,
+          targetLanguage
+        });
+  
+        const translatedText = response.data.translatedText;
+        const [nameLine, descriptionLine, featuresLine] = translatedText.split('\n');
+  
+        const name = nameLine.split(': ')[1];
+        const description = descriptionLine.split(': ')[1];
+        const features = featuresLine.split(': ')[1].split(', ');
+  
+        return {
+          ...plan,
+          name,
+          description,
+          features
+        };
+      } catch (error) {
+        console.log('Error translating text:', error);
+        return plan;
+      }
+    };
+
+    
+
     return (
       <div className='SubscriptionPage'>
         
         <div className="Intro">
           <div className='Intro-Text'>
-            <h1>Plans &  Pricing</h1>
-            <p>Choose the plan that works for you</p>
+            <h1> {t("Subscriptions_heading")} </h1>
+            {/* Plans &  Pricing */}
+            <p>{t("Subscriptions_tagline")}</p>
+            {/* Choose the plan that works for you */}
           </div>
 
           <div className='PlanningOptionsBtn'>
-            <button className='MonthlyBtn' onClick={handleMonthlyBtn}>Monthly</button>
-            <button className='YearlyBtn' onClick={handleYearlyBtn} >Yearly</button>
+            <button className='MonthlyBtn' onClick={handleMonthlyBtn}> {t("Subscriptions_monthly")} </button>
+            <button className='YearlyBtn' onClick={handleYearlyBtn} > {t("Subscriptions_yearly")} </button>
           </div>
         </div>
 
@@ -269,8 +341,8 @@
                         <li key={index}>{feature}</li>
                       ))}
                     </ul>
-                    <button onClick={() => handleInVoice(plan)} className='InVoiceBtn'>Email Invoice</button>
-                    <button onClick={() => handleSubscription(plan)} className='RazorPayBtn' >Pay via RazorPay</button>
+                    <button onClick={() => handleInVoice(plan)} className='InVoiceBtn'> {t("Email_Invoice")} </button>
+                    <button onClick={() => handleSubscription(plan)} className='RazorPayBtn' > {t("Pay_Via_RazorPay")} </button>
                   </div>
                 ))}
               </div>

@@ -1,0 +1,45 @@
+{
+    "sidebar_home": "Home",
+    "sidebar_explore": "Explore",
+    "sidebar_messages": "Messages",
+    "sidebar_notifications": "Notifications",
+    "sidebar_profile": "Profile",
+    "sidebar_settings": "Settings",
+    "sidebar_more": "More",
+
+
+    "speak_your_mind": "Speak your mind",
+    "send_your_voice": "Send your voice",
+    "Widges": "Widges",
+    "View_Full_Voice": "View Full Voice",
+    "search_voices_by_username": "Search voices by username",
+    "No_posts_available": "No posts available",
+    "Refresh_Feed": "Refresh Feed",
+    "Your_Feed": "Your Feed",
+
+    "Username": "Username",
+    "Email": "Email",
+    "Bio": "Bio",
+    "Location": "Location",
+
+
+    "Logout": "Logout",
+    "Voice": "Voice",
+    "Your_Posts": "Your Posts",
+    "Your_Favorite_Voices": "Your Favorite Voices",
+    "No_fav_avail": "No Favorite Voices Available",
+    "No_Posts_Avail": "No Posts Available",
+
+
+    "Edit_profile": "Edit profile",
+    "My_Profile": "My Profile",
+    
+    
+    "Subscriptions": "Subscriptions",
+    "Subscriptions_heading": "Plans &  Pricing",
+    "Subscriptions_tagline": "Choose the plan that works for you",
+    "Subscriptions_monthly": "Monthly",
+    "Subscriptions_yearly": "Yearly",
+    "Email_Invoice": "Email Invoice",
+    "Pay_Via_RazorPay": "Pay Via RazorPay"
+}

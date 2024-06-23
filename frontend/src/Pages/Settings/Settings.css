@@ -38,3 +38,54 @@
     justify-content: center;
     margin-top: 10px;
 }
+
+.language-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.language-selection label {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #333;
+}
+
+.language-selection select {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.language-selection select:focus {
+    border-color: #4a90e2;
+}
+
+.settings_options {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.settings_options button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.settings_options button:hover {
+    background-color: #357ab8;
+}
+
+.settings_options button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.4);
+}

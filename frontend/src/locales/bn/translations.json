@@ -1,0 +1,45 @@
+{
+    "sidebar_home": "বাড়ি",
+    "sidebar_explore": "অন্বেষণ",
+    "sidebar_messages": "বার্তা",
+    "sidebar_notifications": "বিজ্ঞপ্তি",
+    "sidebar_profile": "প্রোফাইল",
+    "sidebar_settings": "সেটিংস",
+    "sidebar_more": "আরো",
+
+
+    "speak_your_mind": "মন থেকে বল",
+    "send_your_voice": "আপনার ভয়েস পাঠান",
+    "Widges": "উইজেট",
+    "View_Full_Voice": "সম্পূর্ণ ভয়েস দেখুন",
+    "search_voices_by_username": "ব্যবহারকারীর নাম দ্বারা ভয়েস অনুসন্ধান করুন",
+    "No_posts_available": "কোন পোস্ট উপলব্ধ",
+    "Refresh_Feed": "রিফ্রেশ ফিড",
+    "Your_Feed": "আপনার ফিড",
+
+
+    "Username": "ব্যবহারকারীর নাম",
+    "Email": "ইমেইল",
+    "Bio": "বায়ো",
+    "Location": "অবস্থান",
+
+    "Logout": "প্রস্থান",
+    "Voice": "ভয়েস",
+    "Your_Posts": "আপনার পোস্ট",
+    "Your_Favorite_Voices": "আপনার প্রিয় ভয়েস",
+    "No_fav_avail": "কোন প্রিয় ভয়েস উপলব্ধ",
+    "No_Posts_Avail": "কোন পোস্ট উপলব্ধ নেই",
+
+
+    "Edit_profile": "জীবন বৃত্তান্ত সম্পাদনা",
+    "My_Profile": "আমার প্রোফাইল",
+    
+    
+    "Subscriptions": "সদস্যতা",
+    "Subscriptions_heading": "পরিকল্পনা &  মূল্য",
+    "Subscriptions_tagline": "আপনার জন্য কাজ করে এমন পরিকল্পনা চয়ন করুন",
+    "Subscriptions_monthly": "মাসিক",
+    "Subscriptions_yearly": "বার্ষিক",
+    "Email_Invoice": "ইমেল চালান",
+    "Pay_Via_RazorPay": "রেজারপে এর মাধ্যমে অর্থ প্রদান করুন"
+}

@@ -5,7 +5,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 export default function FreeSolo({ inputValue, handleInputChange }) {
+  const { t } = useTranslation();
 
   const [usernameList, setUsernameList] = useState([]);
 
@@ -26,7 +29,7 @@ export default function FreeSolo({ inputValue, handleInputChange }) {
         freeSolo
         options={usernameList.map((option) => option.username)}
         onChange={handleInputChange}
-        renderInput={(params) => <TextField {...params} label="search voices by username" />}
+        renderInput={(params) => <TextField {...params} label={t("search_voices_by_username")} />}
       />
     </Stack>
   );

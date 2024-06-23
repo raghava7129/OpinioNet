@@ -11,8 +11,6 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { useEffect, useState } from 'react';
 
 import profilePic from '../../Pages/Profile/MainPage/MainPage'
-import GoogleTranslate from '../../Components/GoogleTranslate/GoogleTranslate';
-import LanguageSelector from '../../Components/LanguageSelector/LanguageSelector';
 
 const Home = () => {
 
@@ -50,10 +48,6 @@ const Home = () => {
 
 
         <Outlet />
-          
-        {/* <LanguageSelector />
-        <GoogleTranslate /> */}
-
         <Widges />
       </div>
 

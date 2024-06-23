@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import './EditProfile.css';
 
+import { useTranslation } from 'react-i18next';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -61,10 +63,12 @@ function EditChild({ dob, setDob }) {
 }
 
 export default function EditProfile({ user, loggedInUser , onProfileSave }) {
+
+  const {t} = useTranslation(); 
+
   const [name, setName] = React.useState(loggedInUser?.name || '');
   const [bio, setBio] = React.useState(loggedInUser?.bio || '');
   const [location, setLocation] = React.useState(loggedInUser?.location || '');
-  const [website, setWebsite] = React.useState(loggedInUser?.website || '');
   const [dob, setDob] = React.useState(loggedInUser?.dob || '');
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -75,7 +79,6 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
       name,
       bio,
       location,
-      website,
       dob,
     };
 
@@ -94,7 +97,6 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
         loggedInUser.name = name;
         loggedInUser.bio = bio;
         loggedInUser.location = location;
-        loggedInUser.website = website;
         loggedInUser.dob = dob;
 
         onProfileSave(editedInfo);
@@ -103,7 +105,7 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
 
   return (
     <div>
-      <button onClick={() => setOpen(true)} className="Edit-profile-btn">Edit profile</button>
+      <button onClick={() => setOpen(true)} className="Edit-profile-btn"> {t("Edit_profile")} </button>
 
       <Modal
         open={open}
@@ -146,14 +148,6 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
               variant='filled'
               onChange={(e) => setLocation(e.target.value)}
               value={location}
-            />
-            <TextField
-              className='text-field'
-              fullWidth
-              label="Website"
-              variant='filled'
-              onChange={(e) => setWebsite(e.target.value)}
-              value={website}
             />
           </form>
 

@@ -1,0 +1,44 @@
+{
+    "sidebar_home": "घर",
+    "sidebar_explore": "अन्वेषण करें",
+    "sidebar_messages": "संदेश",
+    "sidebar_notifications": "सूचनाएं",
+    "sidebar_profile": "प्रोफ़ाइल",
+    "sidebar_settings": "सेटिंग्स",
+    "sidebar_more": "अधिक",
+
+    "speak_your_mind": "अपने मन की बात",
+    "send_your_voice": "अपनी आवाज़ भेजें",
+    "Widges": "विजेट",
+    "View_Full_Voice": "पूरी आवाज़ देखें",
+    "search_voices_by_username": "उपयोगकर्ता नाम द्वारा आवाज़ खोजें",
+    "No_posts_available": "कोई पोस्ट उपलब्ध नहीं है",
+    "Refresh_Feed": "फ़ीड ताज़ा करें",
+    "Your_Feed": "आपका फ़ीड",
+
+
+    "Username": "उपयोगकर्ता नाम",
+    "Email": "ईमेल",
+    "Bio": "जैव",
+    "Location": "जगह",
+
+    "Logout": "लॉग आउट",
+    "Voice": "आवाज़",
+    "Your_Posts": "आपके पोस्ट",
+    "Your_Favorite_Voices": "आपकी पसंदीदा आवाज़ें",
+    "No_fav_avail": "कोई पसंदीदा आवाज़ें उपलब्ध नहीं हैं",
+    "No_Posts_Avail": "कोई पोस्ट उपलब्ध नहीं",
+
+
+    "Edit_profile": "प्रोफ़ाइल संपादित करें",
+    "My_Profile": "मेरी प्रोफाइल",
+    
+    
+    "Subscriptions": "सदस्यता",
+    "Subscriptions_heading": "योजनाओं & मूल्य निर्धारण",
+    "Subscriptions_tagline": "वह योजना चुनें जो आपके लिए कारगर हो",
+    "Subscriptions_monthly": "महीने के",
+    "Subscriptions_yearly": "वार्षिक",
+    "Email_Invoice": "ईमेल चालान",
+    "Pay_Via_RazorPay": "रेज़रपे के माध्यम से भुगतान करें"
+}

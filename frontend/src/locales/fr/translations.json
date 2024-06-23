@@ -1,0 +1,45 @@
+{
+    "sidebar_home": "Maison",
+    "sidebar_explore": "Explorer",
+    "sidebar_messages": "messages",
+    "sidebar_notifications": "Notifications",
+    "sidebar_profile": "Profil",
+    "sidebar_settings": "Paramètres",
+    "sidebar_more": "plus",
+
+    "speak_your_mind": "Dis ce que tu penses",
+    "send_your_voice": "Envoyez votre voix",
+    "Widges": "Widget",
+    "View_Full_Voice": "Voir la voix complète",
+    "search_voices_by_username": "Rechercher des voix par nom d'utilisateur",
+    "No_posts_available": "Aucun message disponible",
+    "Refresh_Feed": "Actualiser le flux",
+    "Your_Feed": "Votre flux",
+
+
+    "Username": "Nom d'utilisateur",
+    "Email": "E-mail",
+    "Bio": "Biographie",
+    "Location": "Emplacement",
+
+
+    "Logout": "Se déconnecter",
+    "Voice": "Voix",
+    "Your_Posts": "Vos publications",
+    "Your_Favorite_Voices": "Vos articles favoris",
+    "No_fav_avail": "Aucune voix préférée disponible",
+    "No_Posts_Avail": "Aucun message disponible",
+
+
+    "Edit_profile": "Editer le profil",
+    "My_Profile": "Mon profil",
+    
+    
+    "Subscriptions": "Abonnements",
+    "Subscriptions_heading": "Forfaits & tarifs",
+    "Subscriptions_tagline": "Choisissez le forfait qui vous convient",
+    "Subscriptions_monthly": "mensuel",
+    "Subscriptions_yearly": "annuel",
+    "Email_Invoice": "Facture par courrier électronique",
+    "Pay_Via_RazorPay": "Payer via RazorPay"
+}

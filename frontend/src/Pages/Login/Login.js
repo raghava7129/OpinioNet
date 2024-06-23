@@ -135,6 +135,7 @@ const Login = () => {
             axios.get(`http://localhost:5000/subscriptions/user/${userEmail}`).then((response) => {
                 if (response.data.length === 1) {
                     // userDefaultSubscription already exists !!!
+                    navigate('/');
                 }
                 else{
 

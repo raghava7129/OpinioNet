@@ -8,6 +8,8 @@ const {connectToDatabase } = require('./Config/db');
 const subscriptionRoutes = require('./Routes/SubscriptionRoutes/SubscriptionRoutes');
 
 const {sendOTP, verifyOTP} = require('./Controllers/emailController/emailController');
+const {TranslateController} = require('./Controllers/TranslateController/TranslateController');
+const rateLimit = require('express-rate-limit');
 
 require('dotenv').config();
 
@@ -273,6 +275,15 @@ connectToDatabase().then((collections) => {
     app.post('/send-otp', sendOTP);
 
     app.post('/verify-otp', verifyOTP);
+
+
+    const translateLimiter = rateLimit({
+      windowMs: 60 * 1000, 
+      max: 1, 
+      message: 'Too many requests from this IP, please try again after a minute',
+    });
+
+    app.post('/translate', TranslateController);
 
 
 

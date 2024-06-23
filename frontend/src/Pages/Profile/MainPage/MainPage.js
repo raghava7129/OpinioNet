@@ -19,6 +19,8 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 
+import { useTranslation } from "react-i18next";
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -33,6 +35,8 @@ const style = {
 
 const MainPage = ({user}) => {
 
+    const {t} = useTranslation();
+
     const navigate = useNavigate();
     const [loggedInUser, setLoggedInUser] = useLoggedInUser();
     const username = loggedInUser?.username ? loggedInUser?.username : user?.email.split('@')[0];
@@ -40,13 +44,11 @@ const MainPage = ({user}) => {
     const FullName = loggedInUser?.fullName;
     const bio = loggedInUser?.bio;
     const location = loggedInUser?.location;
-    const website = loggedInUser?.website;
 
     const [profileData, setProfileData] = useState({
         name: loggedInUser?.name,
         bio: loggedInUser?.bio,
         location: loggedInUser?.location,
-        website: loggedInUser?.website,
         dob: loggedInUser?.dob,
       });
 
@@ -266,13 +268,15 @@ const MainPage = ({user}) => {
         const handleOpen = (id) => () => setOpen(id);
         const handleClose = () => setOpen(null);
 
-
+        const handleBackClick = () =>{
+            navigate('/home');
+        }
         
 
     return (
         <div classNameNameName="MainPage">
             
-            <NavBar heading= "My Profile" username={username} className="NavBar"/>
+            <NavBar heading= {t("My_Profile")} username={username} handleBackClick={handleBackClick} className="NavBar"/>
             
             <div className="CoverImage">
                 <div className="onHoverDiv">
@@ -305,17 +309,15 @@ const MainPage = ({user}) => {
 
                 <div className="profileCard1">
                     <div className="keys">
-                        <h4 title="Username">Username</h4>
-                        <h4 title="Email">Email</h4>
-                        {bio && <h4 title="Bio">Bio</h4>}
-                        {website && <h4 title="Website">Website</h4>}
-                        {location && <h4 title="Location">Location</h4>}
+                        <h4 title="Username"> {t("Username")} </h4>
+                        <h4 title="Email"> {t("Email")} </h4>
+                        {bio && <h4 title="Bio">  {t("Bio")}  </h4>}
+                        {location && <h4 title="Location"> {t("Location")} </h4>}
                     </div>
                     <div className="values">
                         <h4 title={username}>{username}</h4>
                         <h4 title={email}>{email}</h4>
                         {bio && <h4 title={bio}>{bio}</h4>}
-                        {website && <h4 title={website}>{website}</h4>}
                         {location && <h4 title={location}>{location}</h4>}
                     </div>
                 </div>
@@ -323,8 +325,8 @@ const MainPage = ({user}) => {
             <div className="section">
 
                 <div className="Headings">
-                    <h4 className="yourPostsHeading" onClick={handlePostClick}>Your Posts</h4>
-                    <h4 className="yourFavoriteHeading" onClick={handleFavoriteClick}>Your Favorite Voices</h4>
+                    <h4 className="yourPostsHeading" onClick={handlePostClick}> {t("Your_Posts")} </h4>
+                    <h4 className="yourFavoriteHeading" onClick={handleFavoriteClick}> {t("Your_Favorite_Voices")} </h4>
                 </div>
 
                 <div className="yourPostsSection">
@@ -344,7 +346,7 @@ const MainPage = ({user}) => {
                                         <p className="postText" >{post.Voice}</p>
 
                                         <button className="voiceViewBtn" onClick={handleOpen(index)}>
-                                            View Full Voice
+                                            {t("View_Full_Voice")}
                                         </button>
 
                                         <Modal
@@ -380,7 +382,7 @@ const MainPage = ({user}) => {
                             ))}
                         </ul>
                         ) : (
-                            <p>No posts available</p>
+                            <p> {t("No_Posts_Avail")} </p>
                         )}
                     </div>
                 </div>
@@ -395,7 +397,7 @@ const MainPage = ({user}) => {
                                 ))}
                             </ul>
                         ) : (
-                            <p>No favorite voices available</p>
+                            <p> {t("No_fav_avail")} </p>
                         )}
                     </div>
                     

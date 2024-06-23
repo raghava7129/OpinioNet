@@ -1,0 +1,46 @@
+{
+    "sidebar_home": "வீடு",
+    "sidebar_explore": "ஆராயுங்கள்",
+    "sidebar_messages": "செய்திகள்",
+    "sidebar_notifications": "அறிவிப்புகள்",
+    "sidebar_profile": "சுயவிவரம்",
+    "sidebar_settings": "அமைப்புகள்",
+    "sidebar_more": "மேலும்",
+
+
+    "speak_your_mind": "மனம் விட்டு பேசு",
+    "send_your_voice": "உங்கள் குரலை அனுப்புங்கள்",
+    "Widges": "விஜெட்",
+    "View_Full_Voice": "முழு குரலைக் காண்க",
+    "search_voices_by_username": "பயனர்பெயர் மூலம் குரல்களைத் தேடுங்கள்",
+    "No_posts_available": "இடுகைகள் இல்லை",
+    "Refresh_Feed": "ஊட்டத்தைப் புதுப்பிக்கவும்",
+    "Your_Feed": "உங்கள் ஊட்டம்",
+
+
+    "Username": "பயனர் பெயர்",
+    "Email": "மின்னஞ்சல்",
+    "Bio": "உயிர்",
+    "Location": "இடம்",
+
+
+    "Logout": "வெளியேறு",
+    "Voice": "குரல்",
+    "Your_Posts": "உங்கள் இடுகைகள்",
+    "Your_Favorite_Voices": "உங்களுக்கு பிடித்த குரல்கள்",
+    "No_fav_avail": "பிடித்த குரல்கள் இல்லை",
+    "No_Posts_Avail": "இடுகைகள் இல்லை",
+
+
+    "Edit_profile": "சுயவிவரத்தைத் திருத்தவும்",
+    "My_Profile": "என் சுயவிவரம்",
+    
+    
+    "Subscriptions": "சந்தாக்கள்",
+    "Subscriptions_heading": "திட்டங்கள் & விலை நிர்ணயம்",
+    "Subscriptions_tagline": "உங்களுக்காக வேலை செய்யும் திட்டத்தை தேர்வு செய்யவும்",
+    "Subscriptions_monthly": "மாதாந்திர",
+    "Subscriptions_yearly": "ஆண்டுதோறும்",
+    "Email_Invoice": "மின்னஞ்சல் விலைப்பட்டியல்",
+    "Pay_Via_RazorPay": "RazorPay மூலம் பணம் செலுத்துங்கள்"
+}
