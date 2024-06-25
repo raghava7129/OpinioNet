@@ -10,7 +10,6 @@ Backend/node_modules
 Backend/.env
 frontend/.env
 
-frontend/src/firebase.init.js
 
 # testing
 /coverage
