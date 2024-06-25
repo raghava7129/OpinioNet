@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './OTP_page.css';
+import {useLocation} from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
+import i18n from '../../i18n';
+
+
 
 const OtpPage = () => {
+  const [isLoading, setIsLoading] = useState([]);
+
+  const location = useLocation();
+
+  const {navigateTo, email_msg, language} = location.state || {navigateTo: '/', email_msg: 'OpinioNet OTP Verification Code: '};
+
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState(new Array(6).fill(''));
   const [showOtpInput, setShowOtpInput] = useState(false);
@@ -25,15 +35,19 @@ const OtpPage = () => {
         }
     };
 
-  const handleGenerateOtp = async () => {
+  const handleGenerateOtp = async (e) => {
+    e.preventDefault(); 
+    setIsLoading(true);
     try {
-      axios.post('http://localhost:5000/send-otp', { email }).then((response)=>{
+      await axios.post('http://localhost:5000/send-otp', { email, email_msg }).then((response)=>{
         setShowOtpInput(true);
       });
+      setIsLoading(false);
     }
     catch(error){
         console.error('Error sending OTP:', error);
         alert('Failed to send OTP. Please try again.');
+
     }
   };
 
@@ -43,7 +57,8 @@ const OtpPage = () => {
     
     axios.post('http://localhost:5000/verify-otp', { email, otp: enteredOtp }).then((response) => {
       if(response.status === 200){
-        navigate('/');
+        i18n.changeLanguage(language);
+        navigate(navigateTo);
       }
       else{
         alert('OTP verification failed. Please try again.');
@@ -77,7 +92,7 @@ const OtpPage = () => {
                 />
               </div>
             </div>
-              <button className="generate-otp-btn" onClick={handleGenerateOtp}> Generate OTP </button>
+              <button className="generate-otp-btn" onClick={handleGenerateOtp}> Send OTP </button>
           </>
 
           
@@ -103,7 +118,6 @@ const OtpPage = () => {
             ))}
           </div>
             <button className="submit-btn" type="submit">Verify OTP</button>
-
           </>
         )}
       </form>

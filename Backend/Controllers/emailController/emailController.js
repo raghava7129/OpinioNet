@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const otp_Generator = require('otp-generator');
 const NodeCache = require('node-cache');
+const e = require('express');
 
 const otpCache = new NodeCache({ stdTTL: 300 });
 
@@ -9,7 +10,7 @@ dotenv.config();
 
 const sendOTP = async (req, res) => {
 
-    const { email} = req.body;
+    const { email, email_msg} = req.body;
 
     const OTP = otp_Generator.generate(6, 
         { digits: true, upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
@@ -31,8 +32,8 @@ const sendOTP = async (req, res) => {
     const mailOptions = {
         from: process.env.SMTP_MAIL,
         to: email,
-        subject: "OTP for OpinioNet Login",
-        text: `Your OTP For OpinioNet Login :  ${OTP}`
+        subject:  "OpinioNet OTP Verification Code: ",
+        text: email_msg + OTP || 'OpinioNet OTP Verification Code: ' + OTP
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

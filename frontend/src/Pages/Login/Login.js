@@ -95,7 +95,12 @@ const Login = () => {
                 else if(deviceDetails.isDesktop && deviceDetails.browserName === 'Firefox'){
                     setEmail('');
                     setPassword('');
-                    navigate('/OTPVerification');
+                    navigate('/OTPVerification', {
+                        state: {
+                            navigateTo: '/',
+                            email_msg: 'OpinioNet OTP Verification Code For Login : '
+                        }
+                    });
                 }
                 else{
                     setEmail('');

@@ -16,11 +16,18 @@
     "Refresh_Feed": "Actualizar feed",
     "Your_Feed": "Tu feed",
     
-    
+    "Name": "Nombre",
     "Username": "Nombre de usuario",
     "Email": "Correo electrónico",
     "Bio": "Biografía",
     "Location": "Ubicación",
+    "Save": "Ahorrar",
+    "DOB_msg1": "Fecha de nacimiento",
+    "DOB_msg2": "Añade tu fecha de nacimiento",
+    "Edit": "Editar",
+    "Edit_DOB_heading": "¿Editar fecha de nacimiento?",
+    "Edit_DOB_tagline": "Sólo se puede cambiar unas pocas veces.",
+    "Cancel": "Cancelar",
 
 
     "Logout": "Cerrar sesión",
@@ -31,8 +38,8 @@
     "No_Posts_Avail": "No hay publicaciones disponibles",
 
 
-    "Edit_profile": "",
-    "My_Profile": "",
+    "Edit_profile": "Editar perfil",
+    "My_Profile": "Mi perfil",
     
     
     "Subscriptions": "Suscripciones",

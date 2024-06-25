@@ -23,6 +23,9 @@ const style = {
 };
 
 function EditChild({ dob, setDob }) {
+
+  const {t} = useTranslation();
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -35,7 +38,7 @@ function EditChild({ dob, setDob }) {
   return (
     <React.Fragment>
       <div className='birthdate-section' onClick={handleOpen}>
-        <text>Edit</text>
+        <text>{t("Edit")}</text>
       </div>
 
       <Modal
@@ -47,14 +50,14 @@ function EditChild({ dob, setDob }) {
 
         <Box sx={{ ...style, width: 300, height: 300, position: 'relative' }}>
           <div className='text'>
-            <h2>Edit date of birth?</h2>
-            <p>This can only be changed a few times.</p>
+            <h2> {t("Edit_DOB_heading")} </h2>
+            <p> {t("Edit_DOB_tagline")} </p>
             <input
               type="date"
               onChange={e => setDob(e.target.value)}
               value={dob}
             />
-            <Button className='e-button' onClick={handleClose}>Cancel</Button>
+            <Button className='e-button' onClick={handleClose}> {t("Cancel")} </Button>
           </div>
         </Box>
       </Modal>
@@ -118,9 +121,9 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
         <Box sx={style} className="modal" onClick={(e) => e.stopPropagation()}>
           <div className='header'>
             <IconButton onClick={() => setOpen(false)}><CloseIcon /></IconButton>
-            <h2 className='header-title'>Edit Profile</h2>
+            <h2 className='header-title'>{t("Edit_profile")}</h2>
             <button className='save-btn' onClick={handleSave} disabled={loading}>
-              {loading ? <CircularProgress size={24} /> : 'Save'}
+              {loading ? <CircularProgress size={24} /> : t("Save")}
             </button>
           </div>
           
@@ -128,7 +131,7 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
             <TextField
               className='text-field'
               fullWidth
-              label="Name"
+              label={t("Name")}
               variant='filled'
               onChange={(e) => setName(e.target.value)}
               value={name}
@@ -136,7 +139,7 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
             <TextField
               className='text-field'
               fullWidth
-              label="Bio"
+              label={t("Bio")}
               variant='filled'
               onChange={(e) => setBio(e.target.value)}
               value={bio}
@@ -144,7 +147,7 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
             <TextField
               className='text-field'
               fullWidth
-              label="Location"
+              label={t("Location")}
               variant='filled'
               onChange={(e) => setLocation(e.target.value)}
               value={location}
@@ -152,12 +155,12 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
           </form>
 
           <div className='birthdate-section'>
-            <p>Birth Date</p>
+            <p>{t("DOB_msg1")}</p>
             <EditChild dob={dob} setDob={setDob} />
           </div>
 
           <div className='last-section'>
-            <h2>{dob ? dob : 'Add your date of birth'}</h2>
+            <h2>{dob ? dob : t("DOB_msg2")}</h2>
           </div>
         </Box>
         </div>

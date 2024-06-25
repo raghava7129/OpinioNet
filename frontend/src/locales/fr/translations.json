@@ -16,11 +16,18 @@
     "Refresh_Feed": "Actualiser le flux",
     "Your_Feed": "Votre flux",
 
-
+    "Name": "Nom",
     "Username": "Nom d'utilisateur",
     "Email": "E-mail",
     "Bio": "Biographie",
     "Location": "Emplacement",
+    "Save": "Sauvegarder",
+    "DOB_msg1": "Date de naissance",
+    "DOB_msg2": "Ajoutez votre date de naissance",
+    "Edit": "Modifier",
+    "Edit_DOB_heading": "Modifier la date de naissance ?",
+    "Edit_DOB_tagline": "Il ne peut être modifié que quelques fois.",
+    "Cancel": "Annuler",
 
 
     "Logout": "Se déconnecter",

@@ -16,11 +16,18 @@
     "Refresh_Feed": "Atualizar feed",
     "Your_Feed": "Seu feed",
 
-
+    "Name": "Nome",
     "Username": "Nome de usuário",
     "Email": "E-mail",
     "Bio": "Biografia",
     "Location": "Localização",
+    "Save": "Salvar",
+    "DOB_msg1": "Data de nascimento",
+    "DOB_msg2": "Adicione sua data de nascimento",
+    "Edit": "Editar",
+    "Edit_DOB_heading": "Editar data de nascimento?",
+    "Edit_DOB_tagline": "Só pode ser alterado algumas vezes.",
+    "Cancel": "Cancelar",
 
 
     "Logout": "Sair",

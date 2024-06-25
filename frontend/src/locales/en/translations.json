@@ -17,10 +17,18 @@
     "Refresh_Feed": "Refresh Feed",
     "Your_Feed": "Your Feed",
 
+    "Name": "Name",
     "Username": "Username",
     "Email": "Email",
     "Bio": "Bio",
     "Location": "Location",
+    "Save": "Save",
+    "DOB_msg1": "Date of birth",
+    "DOB_msg2": "Add your date of birth",
+    "Edit": "Edit",
+    "Edit_DOB_heading": "Edit date of birth?",
+    "Edit_DOB_tagline": "It can only be changed a few times .",
+    "Cancel": "Cancel",
 
 
     "Logout": "Logout",
