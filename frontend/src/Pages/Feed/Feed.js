@@ -30,7 +30,7 @@ const Feed = () => {
     const translateText = async (text, targetLanguage) => {
     
         try {
-          const response = await axios.post('http://localhost:5000/translate', {
+          const response = await axios.post(`${process.env.REACT_APP_Backend_url}/translate`, {
             text,
             targetLanguage
           });
@@ -47,7 +47,7 @@ const Feed = () => {
       };
 
     const fetchPosts = () => {
-        fetch('http://localhost:5000/post')
+        fetch(`${process.env.REACT_APP_Backend_url}/post`)
             .then((response) => response.json())
             .then((data) => {
                 setPosts(data);

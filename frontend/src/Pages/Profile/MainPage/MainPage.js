@@ -78,7 +78,7 @@ const MainPage = ({user}) => {
         useEffect(() => {
             const fetchPosts = async () => {
                 try {
-                    const data = await axios.get(`http://localhost:5000/posts?email=${email}`);
+                    const data = await axios.get(`${process.env.REACT_APP_Backend_url}/posts?email=${email}`);
                     setPosts(data.data);
                 } catch (error) {
                     console.error("Error fetching posts:", error);
@@ -90,7 +90,7 @@ const MainPage = ({user}) => {
         useEffect(() => {
             const fetchYourFavoriteVoices = async () => {
                 // try {
-                //     const data = await axios.get(`http://localhost:5000/yourFavoriteVoices?email=${email}`);
+                //     const data = await axios.get(`${process.env.REACT_APP_Backend_url}/yourFavoriteVoices?email=${email}`);
                 //     setYourFavoriteVoices(data.data);
                 // } catch (error) {
                 //     console.error("Error fetching posts:", error);
@@ -175,7 +175,7 @@ const MainPage = ({user}) => {
                     // console.log(loggedInUser);
                     // console.log(userProfileDetails);
                     
-                    axios.patch(`http://localhost:5000/userUpdates/${email}`, userProfileDetails).then((res) => {
+                    axios.patch(`${process.env.REACT_APP_Backend_url}/userUpdates/${email}`, userProfileDetails).then((res) => {
                         console.log("inside axios patch");
                         console.log(res);
                         console.log(res.data);
@@ -222,7 +222,7 @@ const MainPage = ({user}) => {
                     // console.log(loggedInUser);
                     // console.log(userProfileDetails);
         
-                    axios.patch(`http://localhost:5000/userUpdates/${email}`, userProfileDetails).then((res) => {
+                    axios.patch(`${process.env.REACT_APP_Backend_url}/userUpdates/${email}`, userProfileDetails).then((res) => {
                         console.log("inside axios patch");
                         // console.log(response);
                         console.log(res.data);
@@ -239,7 +239,7 @@ const MainPage = ({user}) => {
 
                     const postProfilePicInfo = { profilePic: response.data.data.display_url };
 
-                    axios.patch(`http://localhost:5000/postUpdates/${email}`, postProfilePicInfo)
+                    axios.patch(`${process.env.REACT_APP_Backend_url}/postUpdates/${email}`, postProfilePicInfo)
                         .then((res) => {
                             console.log(res.data);
                         })

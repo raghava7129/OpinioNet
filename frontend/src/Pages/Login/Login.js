@@ -56,7 +56,7 @@ const Login = () => {
             
             // console.log(email, password);
             
-            const response = await axios.get(`http://localhost:5000/register?email=${encodeURIComponent(email)}`);
+            const response = await axios.get(`${process.env.REACT_APP_Backend_url}/register?email=${encodeURIComponent(email)}`);
             
             if (response.data.length === 0) {
                 alert('No user found. Please sign up');
@@ -68,7 +68,7 @@ const Login = () => {
                 const loggedInUserDeviceInfo = deviceDetails;
                 console.log('Logged in user device info:', loggedInUserDeviceInfo);
                 
-                axios.post('http://localhost:5000/LoginTrack', {
+                axios.post(`${process.env.REACT_APP_Backend_url}/LoginTrack`, {
                     email: email,
                     deviceInfo: loggedInUserDeviceInfo
                 }).then((response) => {
@@ -137,14 +137,14 @@ const Login = () => {
             console.log(userGoogle._tokenResponse.email);
             const userEmail = userGoogle._tokenResponse.email;
 
-            axios.get(`http://localhost:5000/subscriptions/user/${userEmail}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`).then((response) => {
                 if (response.data.length === 1) {
                     // userDefaultSubscription already exists !!!
                     navigate('/');
                 }
                 else{
 
-                    axios.post("http://localhost:5000/subscriptions/user", {
+                    axios.post(`${process.env.REACT_APP_Backend_url}/subscriptions/user`, {
                         email: userEmail,
                         postLimit: 5
                     }).then((res) => {

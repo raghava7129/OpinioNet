@@ -85,7 +85,7 @@ export default function EditProfile({ user, loggedInUser , onProfileSave }) {
       dob,
     };
 
-    fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
+    fetch(`${process.env.REACT_APP_Backend_url}/userUpdates/${user?.email}`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json'

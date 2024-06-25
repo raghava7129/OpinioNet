@@ -39,7 +39,7 @@ const OtpPage = () => {
     e.preventDefault(); 
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:5000/send-otp', { email, email_msg }).then((response)=>{
+      await axios.post(`${process.env.REACT_APP_Backend_url}/send-otp`, { email, email_msg }).then((response)=>{
         setShowOtpInput(true);
       });
       setIsLoading(false);
@@ -55,7 +55,7 @@ const OtpPage = () => {
     e.preventDefault();
     const enteredOtp = otp.join('');
     
-    axios.post('http://localhost:5000/verify-otp', { email, otp: enteredOtp }).then((response) => {
+    axios.post(`${process.env.REACT_APP_Backend_url}/verify-otp`, { email, otp: enteredOtp }).then((response) => {
       if(response.status === 200){
         i18n.changeLanguage(language);
         navigate(navigateTo);

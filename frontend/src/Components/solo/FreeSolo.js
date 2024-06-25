@@ -5,6 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+
 import { useTranslation } from 'react-i18next';
 
 export default function FreeSolo({ inputValue, handleInputChange }) {
@@ -13,7 +14,7 @@ export default function FreeSolo({ inputValue, handleInputChange }) {
   const [usernameList, setUsernameList] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/registeredUsers')
+    axios.get(`${process.env.REACT_APP_Backend_url}/registeredUsers`)
       .then((response) => {
         setUsernameList(response.data);
       })

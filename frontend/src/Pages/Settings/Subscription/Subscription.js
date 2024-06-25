@@ -61,14 +61,14 @@
         description: `Subscription for ${plan.name}`,
         handler: function (response) {
 
-          axios.get(`http://localhost:5000/subscriptions/user/${email}`)
+          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`)
           .then((response) => {
             if (response.data.length === 1) {
               const prevPostLimit = response.data[0].postLimit;
 
               // console.log("inside 1st axios.get");
 
-              axios.patch(`http://localhost:5000/subscriptions/user/${email}`, {
+              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`, {
                 postLimit: prevPostLimit + plan.postLimit
               })
               .then((response) => {
@@ -118,17 +118,17 @@
 
         // console.log("from frontEnd checkInVoiceStatus ==> ",inVoiceId);
 
-        const response = await axios.get('http://localhost:5000/checkInVoiceStatus',{ params: { inVoiceId } });
+        const response = await axios.get(`${process.env.REACT_APP_Backend_url}/checkInVoiceStatus`,{ params: { inVoiceId } });
         if(response.data.status === 'paid' ){
     
-          axios.get(`http://localhost:5000/subscriptions/user/${email}`)
+          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`)
           .then((response) => {
             if (response.data.length === 1) {
               const prevPostLimit = response.data[0].postLimit;
 
               // console.log("inside 1st axios.get");
 
-              axios.patch(`http://localhost:5000/subscriptions/user/${email}`, {
+              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`, {
                 postLimit: prevPostLimit + plan.postLimit
               })
               .then((response) => {
@@ -174,7 +174,7 @@
       const NAME = username || displayName;
       const EMAIL = emailFromHook || email;
 
-      axios.post('http://localhost:5000/create_invoice', { plan, NAME, EMAIL })
+      axios.post(`${process.env.REACT_APP_Backend_url}/create_invoice`, { plan, NAME, EMAIL })
         .then(response => {
           console.log('Invoice created successfully:', response.data);
 
@@ -227,13 +227,13 @@
     }
 
     const getMonthlyPlan = () => {
-      axios.get('http://localhost:5000/subscriptions/monthly').then((response) => {
+      axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/monthly`).then((response) => {
         setMonthlyPlan(response.data);
       });
     }
     
     const getYearlyPlan = () => {
-      axios.get('http://localhost:5000/subscriptions/yearly').then((response) => {
+      axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/yearly`).then((response) => {
         setYearlyPlan(response.data);
       });
     }
@@ -251,7 +251,7 @@
     //     const translatePlan = async (plan) => {
     //       const text = `Name: ${plan.name}\nDescription: ${plan.description}\nFeatures: ${plan.features.join(', ')}`;
     //       try {
-    //         const response = await axios.post('http://localhost:5000/translate', { text, targetLanguage: i18next.language });
+    //         const response = await axios.post(`${process.env.REACT_APP_Backend_url}/translate`, { text, targetLanguage: i18next.language });
     //         const translatedText = response.data.translatedText.split('\n');
     //         return {
     //           ...plan,
@@ -282,7 +282,7 @@
         Features: ${plan.features.join(', ')}`;
   
       try {
-        const response = await axios.post('http://localhost:5000/translate', {
+        const response = await axios.post(`${process.env.REACT_APP_Backend_url}/translate`, {
           text,
           targetLanguage
         });

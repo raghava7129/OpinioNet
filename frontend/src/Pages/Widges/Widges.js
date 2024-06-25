@@ -29,7 +29,7 @@ const Widges = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/getPosts?username=${inputValue}`).then((response)=>{
+        axios.get(`${process.env.REACT_APP_Backend_url}/getPosts?username=${inputValue}`).then((response)=>{
             // console.log(response.data);
             setPosts(response.data);
         })

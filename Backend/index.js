@@ -88,7 +88,7 @@ connectToDatabase().then((collections) => {
           return res.status(400).send("Email parameter is required");
         }
 
-        const posts = await db.postCollection.find({ email }).toArray();
+        const posts = await db.postCollection.find({ email }).toArray();  
         res.status(200).send(posts);
       } catch (error) {
         console.error("Error getting user's posts:", error);

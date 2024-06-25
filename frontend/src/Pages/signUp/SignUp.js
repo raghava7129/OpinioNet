@@ -57,11 +57,11 @@ const SignUp = () => {
             email: email,
         };
 
-        axios.post("http://localhost:5000/register", User).then((response) => {
+        axios.post(`${process.env.REACT_APP_Backend_url}/register`, User).then((response) => {
             console.log(response);
             auth.SignUpWithEmailAndPassword(email, password).then((response) =>{
 
-                axios.post("http://localhost:5000/subscriptions/user:", {
+                axios.post(`${process.env.REACT_APP_Backend_url}/subscriptions/user:`, {
                     email: email,
                     postLimit: 5
                 }).then((res) => {
