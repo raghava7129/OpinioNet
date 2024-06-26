@@ -21,8 +21,6 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    console.log(auth)
-
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }

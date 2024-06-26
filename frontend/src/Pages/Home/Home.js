@@ -21,8 +21,6 @@ const Home = () => {
 
   // console.log(getUsername);
 
-  // console.log(auth);
-
   const user = useAuthState(auth);
   // console.log(user);
   const handleLogout = () => {
