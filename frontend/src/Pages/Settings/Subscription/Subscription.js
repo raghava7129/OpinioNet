@@ -129,7 +129,7 @@
 
       console.log('Sending notification:', notification);
 
-      axios.post(`http://localhost:5000/notification`, notification)
+      axios.post(`${process.env.REACT_APP_Backend_url}/notification`, notification)
       .then((response) => {
           console.log('Notification sent successfully:', response.data);
       })

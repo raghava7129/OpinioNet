@@ -23,7 +23,7 @@ const Notifications = () => {
     
         const fetchNotifications = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/notifications`, {
+                const response = await axios.get(`${process.env.REACT_APP_Backend_url}/notifications`, {
                     params: {
                         username: loggedInUser.username,
                         email: email
