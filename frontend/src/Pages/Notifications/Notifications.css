@@ -1,0 +1,44 @@
+.page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    flex: 0.7;
+    overflow-y: auto;
+}
+
+.pageHeading {
+    font-size: 2.5em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #c0b132;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+
+}
+
+.notificationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #f9f5f1;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    height: auto;  
+
+}
+
+.notificationItem {
+    background-color: #d6fbcd;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

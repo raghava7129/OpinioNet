@@ -13,7 +13,7 @@ const useLoggedInUser = () => {
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_Backend_url}/loggedInUser?email=${email}`).then((response) => {
             
-            console.log("response from loggedInUser : "+response.data[0]);
+            // console.log("response from loggedInUser : "+response.data[0]);
             setLoggedInUser(response.data[0]);
         }).catch((error) => {
             console.error("Error:", error); 

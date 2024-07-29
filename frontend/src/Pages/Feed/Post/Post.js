@@ -38,15 +38,7 @@ const Post = ({ post }) => {
                         <p>{Voice}</p>
                     </div>
                     
-                    {imageURL? <img src={imageURL} alt="some Image" className='postImage'/> : ''}
-                    
-                    <div className="post_footer">
-                        <ChatBubbleOutlineIcon className="post_footerIcon" fontSize='small'/>
-                        <RepeatIcon className="post_footerIcon" fontSize='small'/>
-                        <FavBorderIcon className="post_footerIcon" fontSize='small'/>
-                        <PublishIcon className="post_footerIcon" fontSize='small'/>
-                        
-                    </div>
+                    {imageURL? <img src={imageURL} alt="some Image" className='postImage'/> : ''}   
 
                 </div>
             </div>

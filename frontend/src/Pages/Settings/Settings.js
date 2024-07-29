@@ -34,6 +34,7 @@ const Settings = () => {
                 language: selectedLanguage
             }
         });
+
     };
 
     const handleBackClick = () =>{

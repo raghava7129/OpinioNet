@@ -68,10 +68,6 @@ const SideBar = ({handleLogout, user, profilePic}) => {
                 <SideBarOptions active={location.pathname === '/home/Explore'} Icon={ExploreIcon} text={t("sidebar_explore")} />
             </CustomLink>
 
-            <CustomLink to='/home/Messages' >
-                <SideBarOptions active={location.pathname === '/home/Messages'} Icon={MailOutLineIcon} text={t("sidebar_messages")} />
-            </CustomLink>
-
             <CustomLink to='/home/Notifications'>
                 <SideBarOptions active={location.pathname === '/home/Notifications'} Icon={NotificationIcon} text={t("sidebar_notifications")} />
             </CustomLink>
@@ -82,10 +78,6 @@ const SideBar = ({handleLogout, user, profilePic}) => {
 
             <CustomLink to='/home/Settings'>
                 <SideBarOptions active={location.pathname === '/home/Settings'} Icon={SettingsIcon} text={t("sidebar_settings")} />
-            </CustomLink>
-
-            <CustomLink to='/home/More'>
-                <SideBarOptions active={location.pathname === '/home/More' } Icon={MoreIcon} text={t("sidebar_more")} />
             </CustomLink>
 
             <Link to='/' className='VoiceBoxBtn'>

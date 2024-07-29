@@ -6,7 +6,7 @@
   import auth  from '../../../firebase.init';
 
   import { useTranslation } from 'react-i18next';
-  import i18next from 'i18next';
+  import i18next, { use } from 'i18next';
 
 
 
@@ -18,8 +18,10 @@
     const user = useAuthState(auth);
     const email = user[0]?.email;
     const displayName = user[0]?.displayName;
+    const [paid, setPaid] = useState(false);
+    const [notificationMessage, setNotificationMessage] = useState('');
 
-    const username = loggedInUser?.username ? loggedInUser?.username : loggedInUser?.email;
+    let username = loggedInUser?.username ? loggedInUser?.username : loggedInUser?.email;
     const emailFromHook = loggedInUser?.email;
     const FullName = loggedInUser?.fullName;
 
@@ -74,6 +76,8 @@
               .then((response) => {
                 // console.log("inside 2nd axios.patch");
                 alert('Subscription added successfully');
+                setPaid(true);
+                setNotificationMessage(`Your subscription for ${plan.name} has been activated successfully, now your post limit is ${prevPostLimit + plan.postLimit}`);
               })
               .catch((error) => {
                 console.error('Error in patch request:', error);
@@ -111,16 +115,43 @@
     };
 
 
+    const sendNotification = (username, email, planName) => {
+      if (!username || !email || !planName) {
+          console.error('Username, email, and plan name are required');
+          return;
+        }
 
+      const notification = {
+          username: username,
+          email: email,
+          message : notificationMessage
+      };
+
+      console.log('Sending notification:', notification);
+
+      axios.post(`http://localhost:5000/notification`, notification)
+      .then((response) => {
+          console.log('Notification sent successfully:', response.data);
+      })
+      .catch((error) => {
+          console.error('Error sending notification:', error);
+      });
+      
+  };
 
     const checkInvoiceStatus = async (inVoiceId, email, plan, intervalId) => {
       try{
 
-        // console.log("from frontEnd checkInVoiceStatus ==> ",inVoiceId);
+        console.log("from frontEnd checkInVoiceStatus ==> ",inVoiceId);
 
         const response = await axios.get(`${process.env.REACT_APP_Backend_url}/checkInVoiceStatus`,{ params: { inVoiceId } });
+
+        console.log("response.data.status ==> ",response.data.status);
+
         if(response.data.status === 'paid' ){
-    
+
+        console.log("setting paid to true");
+
           axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`)
           .then((response) => {
             if (response.data.length === 1) {
@@ -134,6 +165,10 @@
               .then((response) => {
                 // console.log("inside 2nd axios.patch");
                 alert('Subscription added successfully');
+
+                setPaid(true);
+                setNotificationMessage(`Your subscription for ${plan.name} has been activated successfully, now your post limit is ${prevPostLimit + plan.postLimit}`);
+
                 clearInterval(intervalId);
               })
               .catch((error) => {
@@ -157,6 +192,15 @@
       }
       
     }
+
+    useEffect(() => {
+      if (paid === true){
+        sendNotification(username, email, notificationMessage);
+        setPaid(false);
+        setNotificationMessage('');
+      }
+    }, [paid]);
+
   
 
 
@@ -183,6 +227,9 @@
           alert("Please check your email for the invoice. Your subscription will be activated within 5 minutes of successful payment.");
 
           startPolling(response.data.id, EMAIL, plan);
+
+
+          
 
         })
         .catch(error => {
@@ -245,6 +292,11 @@
 
       initializeRazorpay();
     }, []);
+
+
+    useEffect(() => {
+      username = loggedInUser?.username ? loggedInUser?.username : loggedInUser?.email;
+    }, [loggedInUser]);
 
     // useEffect(() => {
     //   const fetchAndTranslatePlans = async () => {

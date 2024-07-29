@@ -21,7 +21,8 @@ async function connectToDatabase(){
           userCollection: db.collection('users'),
           subscriptionCollection: db.collection('subscriptionCollection'),
           userSubscriptionDetailsCollection: db.collection('userSubscriptionDetails'),
-          LoginTrackCollection: db.collection('LoginTrack')
+          LoginTrackCollection: db.collection('LoginTrack'),
+          notificationCollection: db.collection('notifications')
         };
     } catch (error) {
     console.error('Failed to connect to the database', error);

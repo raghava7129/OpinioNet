@@ -142,6 +142,29 @@ connectToDatabase().then((collections) => {
     });
 
 
+    app.get('/notifications', async (req, res) => {
+      const { username, email } = req.query;
+
+      if (!username || !email) {
+        return res.status(400).json({ error: 'Username and email are required' });
+      }
+
+      try {
+
+        const notifications = await db.notificationCollection.find({ username, email }).toArray();
+        res.status(200).json(notifications);
+
+
+
+      } catch (error) {
+        console.error('Error getting notifications:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      
+    });
+
+
     // post endpoints
 
     app.post('/post', async (req, res) => {
@@ -284,6 +307,24 @@ connectToDatabase().then((collections) => {
     });
 
     app.post('/translate', TranslateController);
+
+
+
+    app.post('/notification', async (req, res) => {
+      const notification = req.body;
+
+      if (!notification.username || !notification.email || !notification.message) {
+        return res.status(400).send('Username, email, and message are required');
+      }
+
+      try {
+        const result = await db.notificationCollection.insertOne(notification);
+        res.status(201).send(result);
+      } catch (error) {
+        console.error('Error inserting notification:', error);
+        res.status(500).send('Error inserting notification');
+      }
+    });
 
 
 

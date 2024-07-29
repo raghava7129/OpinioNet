@@ -11,6 +11,7 @@ import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { useEffect, useState } from 'react';
 
 import profilePic from '../../Pages/Profile/MainPage/MainPage'
+import MainPage from '../../Pages/Profile/MainPage/MainPage';
 
 const Home = () => {
 
@@ -43,7 +44,6 @@ const Home = () => {
       <div className='HomePage'>
         <SideBar handleLogout = {handleLogout} user = {user} profilePic =
            {profilePic} className='sideBar'/>
-
 
         <Outlet />
         <Widges />
