@@ -27,13 +27,15 @@ const Settings = () => {
     const handleLanguageChange = (event) => {
 
         const selectedLanguage = event.target.value;
-        navigate('/OTPVerification', {
-            state: {
-                navigateTo: '/home/Settings',
-                email_msg: 'OpinioNet OTP Verification Code For Language change : ',
-                language: selectedLanguage
-            }
-        });
+        setLanguage(selectedLanguage);
+        i18n.changeLanguage(selectedLanguage);
+        // navigate('/OTPVerification', {
+        //     state: {
+        //         navigateTo: '/home/Settings',
+        //         email_msg: 'OpinioNet OTP Verification Code For Language change : ',
+        //         language: selectedLanguage
+        //     }
+        // });
 
     };
 

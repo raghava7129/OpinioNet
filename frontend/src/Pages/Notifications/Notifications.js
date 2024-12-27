@@ -50,8 +50,32 @@ const Notifications = () => {
 
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+          <div style={{
+            position: 'relative',
+            top: 0,
+            left: 0,
+            width: '80%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#f9f9f9',
+            zIndex: 9999,
+          }}>
+            <div style={{
+              fontSize: '2rem',
+              fontWeight: 'bold',
+              color: '#444',
+              fontFamily: 'Arial, sans-serif',
+            }}>
+              Loading...
+            </div>
+          </div>
+        );
       }
+      
+      
     
       if (error) {
         return <div>Error: {error}</div>;

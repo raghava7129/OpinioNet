@@ -58,22 +58,26 @@ const SignUp = () => {
         };
 
         axios.post(`${process.env.REACT_APP_Backend_url}/register`, User).then((response) => {
-            console.log(response);
-            auth.SignUpWithEmailAndPassword(email, password).then((response) =>{
-
-                axios.post(`${process.env.REACT_APP_Backend_url}/subscriptions/user:`, {
-                    email: email,
-                    postLimit: 5
+            if (response.status === 201) {
+                auth.SignUpWithEmailAndPassword(email, password).then(() => {
+                    return axios.post(
+                        `${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails`,
+                        { email, postLimit: 5 }
+                    );
                 }).then((res) => {
                     console.log(res);
+                    navigate('/');
                 }).catch((err) => {
                     console.error("Error:", err);
+                    alert(err.response?.data?.message || "Subscription setup failed");
                 });
-
-                navigate('/');
-            });
+            }
+            else{
+                alert(response.data.message);
+            }
         }).catch((error) => {
             console.error("Error:", error);
+            alert(error.response?.data?.message || "Registration failed");
         });
 
     }

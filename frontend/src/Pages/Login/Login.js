@@ -137,14 +137,14 @@ const Login = () => {
             console.log(userGoogle._tokenResponse.email);
             const userEmail = userGoogle._tokenResponse.email;
 
-            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${userEmail}`).then((response) => {
                 if (response.data.length === 1) {
                     // userDefaultSubscription already exists !!!
                     navigate('/');
                 }
                 else{
 
-                    axios.post(`${process.env.REACT_APP_Backend_url}/subscriptions/user`, {
+                    axios.post(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails`, {
                         email: userEmail,
                         postLimit: 5
                     }).then((res) => {

@@ -4,9 +4,10 @@ require('dotenv').config();
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@opinionet.aee51z4.mongodb.net/?retryWrites=true&w=majority&appName=OpinioNet`;
 const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
   serverApi: {
     version: ServerApiVersion.v1,
-    strict: true,
     deprecationErrors: true,
   }
 });

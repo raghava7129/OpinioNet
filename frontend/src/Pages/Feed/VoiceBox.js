@@ -65,7 +65,7 @@ function VoiceBox(){
 
         console.log("VoiceBox providerID : "+user[0]?.providerData[0].providerId);
 
-        if(user[0]?.providerData[0].providerId == 'password'){
+        if(user[0]?.providerData[0].providerId === 'password'){
             const usersName = loggedInUser?.username ? loggedInUser?.username : "User";
             setUserName(usersName);
             const Name = loggedInUser?.fullName ? loggedInUser?.fullName : "User fullname";
@@ -81,15 +81,17 @@ function VoiceBox(){
             }
 
             console.log("from normal signUp : "+userPost);
+            console.log("Email from VoiceBox : "+userEmail);
 
-            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${userEmail}`).then((response) => {
+                console.log("from VoiceBox : "+response[0]);
             if (response.data.length === 1) {
                 const prevPostLimit = response.data[0].postLimit;
 
                 if(prevPostLimit >0){
 
 
-                    axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`, {
+                    axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${userEmail}`, {
                         postLimit: prevPostLimit - 1
                       })
                       .then((response) => {
@@ -118,6 +120,7 @@ function VoiceBox(){
                 }
             }
             else {
+                console.log(response);
                 console.error('Subscription not found or multiple subscriptions returned');
                 alert('Subscription not found');
             }
@@ -154,14 +157,14 @@ function VoiceBox(){
 
             console.log("from Google signUp : "+userPost);
 
-            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`).then((response) => {
+            axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${userEmail}`).then((response) => {
                 if (response.data.length === 1) {
                     const prevPostLimit = response.data[0].postLimit;
     
                     if(prevPostLimit >0){
     
     
-                        axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${userEmail}`, {
+                        axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${userEmail}`, {
                             postLimit: prevPostLimit - 1 
                           }).then((response) => {
                             

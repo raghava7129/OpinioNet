@@ -392,7 +392,7 @@ ul{
     margin-top: 5px;
 }
 
-.modalBox {
+/* .modalBox {
     position: fixed; 
     z-index: 1;
     left: 0;
@@ -403,33 +403,29 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.modalBox .modalBoxContent{
+/* .modalBox .modalBoxContent{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.modalBox .modalBoxContent .header {
-    position: fixed; 
-    top: 0;
-    width: 90%;
-    margin-top: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    z-index: 2; 
-    padding: 10px;
-    
 }
 
 .modalBox .modalBoxContent .header .header-title {
     font-size: 20px;
     color: #333;
 }
+
+
+
+.modalBox .modalBoxContent .content {
+    position: absolute;
+    top:auto;
+    padding: 30px;
+    background-color: #fff;
+    overflow-y: auto; 
+    max-height: 65vh;
+} */
 
 .modalBox .modalBoxContent .header .closeBtn {
     position: absolute;
@@ -439,19 +435,40 @@ ul{
     cursor: pointer;
 }
 
-.modalBox .modalBoxContent .content {
-    position: absolute;
-    top:auto;
-    padding: 30px;
+.modalBox .modalBoxContent .header {
+    position: sticky; 
+    top: 0;
+    width: 100%;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
-    overflow-y: auto; 
-    max-height: 65vh;
+    border-bottom: 1px solid #ddd;
+    z-index: 2; 
 }
 
+.modalBox {
+    max-height: 80vh;
+    overflow-y: auto; 
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+  }
+  
+  .modalBoxContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
 .voiceText {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 16px;
     color:#333;
+    text-align: center;
 }
 
 

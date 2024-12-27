@@ -1,18 +1,21 @@
-// const cors = require('cors');
+const express = require('express');
+const router = express.Router();
 
-module.exports = (app, db) =>{
-
-    // app.use(cors());
+module.exports = (db) =>{
     const subscriptionController = require('../../Controllers/SubscriptionControllers/SubscriptionControllers')(db);
 
-    app.get('/subscriptions/monthly', subscriptionController.getMonthlyPlan);
-    app.get('/subscriptions/yearly', subscriptionController.getYearlyPlan);
+    router.route("/userSubscriptionDetails")
+        .get(subscriptionController.getAllSubscriptionDetails)
+        .post(subscriptionController.addUserSubscriptionDetails);
 
-    app.get('/subscriptions/user', subscriptionController.getAllSubscriptionDetails);
-    app.get('/subscriptions/user/:email', subscriptionController.getSubscriptionDetailsByEmail);
-    app.post('/subscriptions/user', subscriptionController.addUserSubscriptionDetails); 
-    app.patch('/subscriptions/user/:email', subscriptionController.updateSubscriptionDetailsByEmail);
+    router
+        .get("/monthly", subscriptionController.getMonthlyPlan)
+        .get("/yearly", subscriptionController.getYearlyPlan);
 
-
-
+    
+    router.route("/userSubscriptionDetails/:email")
+        .get(subscriptionController.getSubscriptionDetailsByEmail)
+        .patch(subscriptionController.updateSubscriptionDetailsByEmail);
+    
+    return router;
 };

@@ -14,7 +14,7 @@ export default function FreeSolo({ inputValue, handleInputChange }) {
   const [usernameList, setUsernameList] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_Backend_url}/registeredUsers`)
+    axios.get(`${process.env.REACT_APP_Backend_url}/getAllUsernames`)
       .then((response) => {
         setUsernameList(response.data);
       })

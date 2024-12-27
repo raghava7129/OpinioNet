@@ -41,6 +41,16 @@ connectToDatabase().then((collections) => {
       }
     });
 
+    app.get('/getAllUsernames', async (req, res) => {
+      try {
+        const usernames = await db.postCollection.distinct("username");
+        res.send(usernames.map(username => ({ username })));
+      } catch (error) {
+        console.error("Error getting usernames:", error);
+        res.status(500).send("Error getting usernames");
+      }
+    });    
+
     app.get('/register', async (req, res) => {
       try {
         const email = req.query.email;
@@ -111,7 +121,7 @@ connectToDatabase().then((collections) => {
       }
     });
 
-    subscriptionRoutes(app, db);
+    app.use('/subscriptions', subscriptionRoutes(db));
 
     app.get('/checkInVoiceStatus', async (req, res)=>{
       try{
@@ -180,23 +190,26 @@ connectToDatabase().then((collections) => {
 
     app.post('/register', async (req, res) => {
       try {
-        const { email } = req.body;
-        if (!email) {
-          return res.status(400).send("Email is required");
+        const { email, username, fullName } = req.body;
+    
+        const prevUserByUserName = await db.userCollection.findOne({ username });
+        if (prevUserByUserName) {
+          return res.status(409).send({ message: "Username already taken" });
         }
 
         const prevUser = await db.userCollection.findOne({ email });
         if (prevUser) {
-          res.status(409).send("Username already taken");
-        } else {
-          const result = await db.userCollection.insertOne(req.body);
-          res.status(201).send("User created");
+          return res.status(409).send({ message: "User already exists with this email" });
         }
+    
+        await db.userCollection.insertOne(req.body);
+        return res.status(201).send({ message: "User created" });
       } catch (error) {
-        console.log("Error inserting user:", error);
-        res.status(500).send("Error inserting user");
+        console.error("Error inserting user:", error);
+        return res.status(500).send({ message: "Error inserting user" });
       }
     });
+    
 
     const currentTime = new Date();
     const expireTime = new Date(currentTime.getTime() + 24 * 60 * 60 * 1000);

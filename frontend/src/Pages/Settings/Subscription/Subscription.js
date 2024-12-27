@@ -63,14 +63,14 @@
         description: `Subscription for ${plan.name}`,
         handler: function (response) {
 
-          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`)
+          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${email}`)
           .then((response) => {
             if (response.data.length === 1) {
               const prevPostLimit = response.data[0].postLimit;
 
               // console.log("inside 1st axios.get");
 
-              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`, {
+              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${email}`, {
                 postLimit: prevPostLimit + plan.postLimit
               })
               .then((response) => {
@@ -152,14 +152,15 @@
 
         console.log("setting paid to true");
 
-          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`)
+          axios.get(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails/${email}`)
           .then((response) => {
             if (response.data.length === 1) {
               const prevPostLimit = response.data[0].postLimit;
 
               // console.log("inside 1st axios.get");
 
-              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/user/${email}`, {
+              axios.patch(`${process.env.REACT_APP_Backend_url}/subscriptions/userSubscriptionDetails`, {
+                email: email,
                 postLimit: prevPostLimit + plan.postLimit
               })
               .then((response) => {
